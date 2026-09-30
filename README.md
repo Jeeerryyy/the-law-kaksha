@@ -1,15 +1,18 @@
 <div align="center">
 
-![The Law Kaksha Banner](./frontend/public/assets/hero%20section..svg)
+<img src="frontend/public/assets/hero%20section..svg" alt="The Law Kaksha Banner" width="100%" />
+
+<br />
+<br />
 
 # The Law Kaksha (The Law कक्षा)
 ### Premier Chartered Accountancy Law Education & Examination Platform
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.3-black?style=flat&logo=next.js)](https://nextjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green?style=flat&logo=node.js)](https://nodejs.org/)
-[![Express](https://img.shields.io/badge/Express-4.21-lightgrey?style=flat&logo=express)](https://expressjs.com/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38bdf8?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-Proprietary-blue?style=flat)](#license)
+[![Next.js](https://img.shields.io/badge/Next.js-16.3-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-4.21-000000?style=for-the-badge&logo=express)](https://expressjs.com/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-Proprietary-blue?style=for-the-badge)](#license)
 
 **The Law Kaksha** is an institutional-grade educational web platform designed specifically for **CA Foundation**, **CA Intermediate (Paper 2: Corporate & Other Laws)**, and **CA Final** aspirants in India.
 
