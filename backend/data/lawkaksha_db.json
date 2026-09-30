@@ -1,6 +1,19 @@
 {
   "users": [
     {
+      "id": "usr-1790773187340-651",
+      "student_id": "LRK-2026-433882",
+      "name": "Parth Test Student",
+      "email": "student_1790773187091@gmail.com",
+      "phone": "+91 99887 76655",
+      "password_hash": "$2b$10$HtVOHDzdh6QKgzmF7Prd0.o3SnA0Vx3XGAITBW4THsVEr0Q/kRNYK",
+      "role": "student",
+      "target_exam": "CA Intermediate Paper 2 (Nov'26)",
+      "is_active": 1,
+      "created_at": "2026-09-30T12:59:47.340Z",
+      "updated_at": "2026-09-30T12:59:47.340Z"
+    },
+    {
       "id": "usr-1790766980375-305",
       "student_id": "LRK-2026-292560",
       "name": "Parth Test Student",
@@ -339,6 +352,25 @@
   ],
   "orders": [
     {
+      "id": "LK-ORD-375513",
+      "user_id": "usr-1790773187340-651",
+      "total_amount": 199,
+      "discount_amount": 50,
+      "coupon_code": "LAW20",
+      "payment_status": "PAID",
+      "payment_gateway": "razorpay",
+      "gateway_order_id": "order_c64ff0cbfd46c9db",
+      "gateway_payment_id": "pay_test_1790773187472",
+      "gateway_signature": "sig_test_verified",
+      "shipping_name": "Parth Test Student",
+      "shipping_email": "student_1790773187091@gmail.com",
+      "shipping_phone": "+91 99887 76655",
+      "shipping_address": "Digital Student Vault Access",
+      "tracking_number": "INSTANT-DRM-VAULT",
+      "created_at": "2026-09-30T12:59:47.467Z",
+      "updated_at": "2026-09-30T12:59:47.474Z"
+    },
+    {
       "id": "LK-ORD-275152",
       "user_id": "usr-1790766980375-305",
       "total_amount": 199,
@@ -493,6 +525,19 @@
   ],
   "order_items": [
     {
+      "id": "oi-1790773187469-378",
+      "order_id": "LK-ORD-375513",
+      "product_id": "book-vol-2",
+      "format": "pdf",
+      "price": 249,
+      "quantity": 1,
+      "unlocked_ids": [
+        "book-vol-2"
+      ],
+      "created_at": "2026-09-30T12:59:47.469Z",
+      "updated_at": "2026-09-30T12:59:47.469Z"
+    },
+    {
       "id": "oi-1790766980492-584",
       "order_id": "LK-ORD-275152",
       "product_id": "book-vol-2",
@@ -607,6 +652,15 @@
     }
   ],
   "enrollments": [
+    {
+      "id": "enr-1790773187476-634",
+      "user_id": "usr-1790773187340-651",
+      "product_id": "book-vol-2",
+      "order_id": "LK-ORD-375513",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-30T12:59:47.476Z",
+      "updated_at": "2026-09-30T12:59:47.476Z"
+    },
     {
       "id": "enr-1790766980504-582",
       "user_id": "usr-1790766980375-305",
