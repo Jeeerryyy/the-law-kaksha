@@ -1,0 +1,1031 @@
+{
+  "users": [
+    {
+      "id": "usr-1790766980375-305",
+      "student_id": "LRK-2026-292560",
+      "name": "Parth Test Student",
+      "email": "student_1790766980245@gmail.com",
+      "phone": "+91 99887 76655",
+      "password_hash": "$2b$10$ZW6aEHJE6sXJoM/A7M.a9u.Df0Htgcx2hHEBUQOAdKTOGOhPXmzOC",
+      "role": "student",
+      "target_exam": "CA Intermediate Paper 2 (Nov'26)",
+      "is_active": 1,
+      "created_at": "2026-09-30T11:16:20.375Z",
+      "updated_at": "2026-09-30T11:16:20.375Z"
+    },
+    {
+      "id": "usr-1790764748858-906",
+      "student_id": "LRK-2026-520539",
+      "name": "Enrolled Candidate",
+      "email": "candidate@lawkaksha.edu",
+      "phone": "+91 98765 43210",
+      "password_hash": "",
+      "role": "student",
+      "target_exam": "CA Intermediate Paper 2: Corporate & Other Laws (Nov 2026)",
+      "is_active": 1,
+      "created_at": "2026-09-30T10:39:08.858Z",
+      "updated_at": "2026-09-30T10:39:08.858Z"
+    },
+    {
+      "id": "usr-student-001",
+      "student_id": "LK-STU-084201",
+      "name": "Enrolled Candidate",
+      "email": "student@thelawkaksha.com",
+      "phone": "+91 98765 43210",
+      "password_hash": "$2b$10$DQKPIHPhEfsyYc4kZoh3oeQ2sLPJDRuds3BdIphZEc1pC1qSh0t/a",
+      "role": "student",
+      "target_exam": "CA Intermediate Paper 2: Corporate & Other Laws (Nov 2026)",
+      "is_active": 1,
+      "created_at": "2026-09-25T18:31:10.552Z",
+      "updated_at": "2026-09-25T18:31:10.552Z"
+    },
+    {
+      "id": "usr-admin-001",
+      "student_id": "LRK-ADM-000001",
+      "name": "The Law Kaksha Admin",
+      "email": "admin@thelawkaksha.com",
+      "phone": "+91 99999 88888",
+      "password_hash": "$2b$10$058m7MDF/42BUgKLBL38Bu4oHmZtoZgL.jQjC.BQPn.RroEjq7Tly",
+      "role": "admin",
+      "target_exam": "Administrator",
+      "is_active": 1,
+      "created_at": "2026-09-25T18:31:10.548Z",
+      "updated_at": "2026-09-25T18:31:10.548Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "mains-evaluation",
+      "slug": "1-on-1-descriptive-test-series-copy-checking",
+      "type": "evaluation",
+      "title": "1-on-1 Descriptive Test Series & Copy Checking Desk",
+      "subtitle": "Submit your handwritten answer sheets for 5-pillar faculty grading and audio feedback.",
+      "pages_or_duration": "8 Full Papers",
+      "price": 699,
+      "original_price": 1299,
+      "badge": "Copy Checking",
+      "category": "CA Mains Evaluation",
+      "description": "Get detailed line-by-line checking of your law descriptive papers within 48 hours to boost scores to 70+. Includes personalized audio feedback note and model ICAI benchmark copies.",
+      "cover_image": "/covers/copy-checking.png",
+      "preview_file": "sample-evaluated-copy.pdf",
+      "full_file_key": "vault/test-series-papers-2026.zip",
+      "highlights": [
+        "8 Full 100-Mark ICAI Model Test Papers",
+        "5-Pillar Rubric: Law citation, fact synthesis, argument & conclusion",
+        "Line-by-line red-ink annotated PDF evaluation within 48 hours",
+        "Personalized faculty voice note highlighting improvement areas"
+      ],
+      "syllabus": [
+        {
+          "chapter": "Test 1 & 2",
+          "title": "Chapter-wise Tests: Sections 1 to 72 (50 Marks Each)"
+        },
+        {
+          "chapter": "Test 3 & 4",
+          "title": "Chapter-wise Tests: Sections 73 to 148 (50 Marks Each)"
+        },
+        {
+          "chapter": "Test 5 & 6",
+          "title": "Other Laws Comprehensive Tests (50 Marks Each)"
+        },
+        {
+          "chapter": "Test 7 & 8",
+          "title": "Full Syllabus 100-Mark ICAI Simulation Papers"
+        }
+      ],
+      "status": "published",
+      "created_at": "2026-09-25T18:31:10.324Z",
+      "updated_at": "2026-09-25T18:31:10.324Z"
+    },
+    {
+      "id": "video-classes",
+      "slug": "hd-video-masterclasses-full-law-lecture-series",
+      "type": "video",
+      "title": "HD Video Masterclasses: Full Law Lecture Series",
+      "subtitle": "32 in-depth chapter masterclasses with timestamped notes and faculty drafting rubrics.",
+      "pages_or_duration": "45+ Hours",
+      "price": 999,
+      "original_price": 1899,
+      "badge": "Video Course",
+      "category": "CA Foundation & Inter",
+      "description": "Detailed video breakdown of tricky corporate law sections with practical boardroom case studies, real MCA portal demonstrations, and drafting walk-throughs.",
+      "cover_image": "/covers/video-series.png",
+      "preview_file": "sample-video-preview.mp4",
+      "full_file_key": "vault/masterclass-law-series-2026.m3u8",
+      "highlights": [
+        "32 HD Video Masterclasses with dual speed audio (1.25x/1.5x/2.0x)",
+        "Timestamped Bare Act section navigation",
+        "Faculty drafting rubrics for high-scoring descriptive answers",
+        "Boardroom practical case study discussions"
+      ],
+      "syllabus": [
+        {
+          "chapter": "Module 1",
+          "title": "Company Formation & Secretarial Compliances (8 Lectures)"
+        },
+        {
+          "chapter": "Module 2",
+          "title": "Securities, Prospectus & Allotment Rules (6 Lectures)"
+        },
+        {
+          "chapter": "Module 3",
+          "title": "General Meetings, Quorum & Voting Dynamics (10 Lectures)"
+        },
+        {
+          "chapter": "Module 4",
+          "title": "Audit, CSR Mandates & Statutory Presumptions (8 Lectures)"
+        }
+      ],
+      "status": "published",
+      "created_at": "2026-09-25T18:31:10.322Z",
+      "updated_at": "2026-09-25T18:31:10.322Z"
+    },
+    {
+      "id": "book-ldr",
+      "slug": "1-5-day-last-day-revision-ldr-maps",
+      "type": "book",
+      "title": "1.5-Day Last Day Revision (LDR) Section Maps",
+      "subtitle": "Summary Flowcharts, Limit Tables & Penalty Code Tables for the last 36 hours.",
+      "pages_or_duration": "180 Pages",
+      "price": 199,
+      "original_price": 349,
+      "badge": "Quick Revision",
+      "category": "CA Exam Eve Maps",
+      "description": "Ultra-condensed visual flowcharts and penalty summary tables designed specifically for the final 36 hours before your CA exam. Retain limits, thresholds, and timeframes.",
+      "cover_image": "/covers/ldr-maps.png",
+      "preview_file": "sample-preview-ldr.pdf",
+      "full_file_key": "vault/ca-ldr-maps-full-2026.pdf",
+      "highlights": [
+        "Complete time-limit tables (15 days, 30 days, 60 days, 90 days)",
+        "Penal provisions & compoundable vs non-compoundable offenses map",
+        "1.5-day hour-by-hour revision timetable for CA Law",
+        "Formula sheets for quorum and voting percentage calculations"
+      ],
+      "syllabus": [
+        {
+          "chapter": "Map 1",
+          "title": "Incorporation & Capital Limits Map"
+        },
+        {
+          "chapter": "Map 2",
+          "title": "Deposits & Charges Flowcharts"
+        },
+        {
+          "chapter": "Map 3",
+          "title": "General Meetings & Quorum Master Table"
+        },
+        {
+          "chapter": "Map 4",
+          "title": "Accounts, CSR & Audit Critical Sections Checklist"
+        }
+      ],
+      "status": "published",
+      "created_at": "2026-09-25T18:31:10.320Z",
+      "updated_at": "2026-09-25T18:31:10.320Z"
+    },
+    {
+      "id": "book-mcq",
+      "slug": "icai-case-scenarios-30-mark-mcq-bank",
+      "type": "mcq",
+      "title": "ICAI Case Scenarios & 30-Mark MCQ Bank (1,200+ Qs)",
+      "subtitle": "Mandatory 30-mark section with detailed reasoning for each option.",
+      "pages_or_duration": "260 Pages",
+      "price": 249,
+      "original_price": 449,
+      "badge": "Practice Drill",
+      "category": "Practice Question Bank",
+      "description": "Practice chapter-wise ICAI case scenarios, negative marking prevention drills, and MCA amendment MCQs. Includes step-by-step statutory reasoning for all 4 options.",
+      "cover_image": "/covers/mcq-codex.png",
+      "preview_file": "sample-preview-mcq.pdf",
+      "full_file_key": "vault/ca-mcq-bank-full-2026.pdf",
+      "highlights": [
+        "1,200+ ICAI Curated Multiple Choice Questions",
+        "Full reasoning and Bare Act citation for every correct option",
+        "35 Integrated Case Scenarios with 5 MCQs each",
+        "Negative marking elimination techniques"
+      ],
+      "syllabus": [
+        {
+          "chapter": "Section 1",
+          "title": "Corporate Law Chapter-wise Objective Drills"
+        },
+        {
+          "chapter": "Section 2",
+          "title": "Economic & Other Laws Conceptual MCQs"
+        },
+        {
+          "chapter": "Section 3",
+          "title": "35 Integrated Comprehensive Case Scenarios"
+        },
+        {
+          "chapter": "Section 4",
+          "title": "Mock Test Papers Objective Section with Solutions"
+        }
+      ],
+      "status": "published",
+      "created_at": "2026-09-25T18:31:10.317Z",
+      "updated_at": "2026-09-25T18:31:10.317Z"
+    },
+    {
+      "id": "book-vol-2",
+      "slug": "volume-2-economic-and-other-business-laws",
+      "type": "book",
+      "title": "Part 2: Rest of the Acts",
+      "subtitle": "Sale of Goods, Partnership, LLP & Companies Act Examiner Framework.",
+      "pages_or_duration": "480 Pages",
+      "price": 249,
+      "original_price": 449,
+      "badge": "Volume 2",
+      "category": "CA Foundation Paper 2",
+      "description": "Master statutory interpretation rules, General Clauses Act presumption principles, and Foreign Contribution Regulation Act (FCRA). Crafted specifically for CA Inter Paper 2 high scoring.",
+      "cover_image": "/covers/vol2-codex.webp",
+      "preview_file": "sample-preview-vol-2.pdf",
+      "full_file_key": "vault/ca-other-laws-vol2-full-2026.pdf",
+      "highlights": [
+        "General Clauses Act 1897 deep-dive with judicial precedents",
+        "Interpretation of Statutes: Primary & Secondary Rules",
+        "Foreign Contribution Regulation Act (FCRA) 2010 rules",
+        "Past 12 exam descriptive answers with marking criteria"
+      ],
+      "syllabus": [
+        {
+          "chapter": "Part A",
+          "title": "The General Clauses Act, 1897 (Sections 1 to 30)"
+        },
+        {
+          "chapter": "Part B",
+          "title": "Interpretation of Statutes, Deeds and Documents"
+        },
+        {
+          "chapter": "Part C",
+          "title": "The Foreign Contribution (Regulation) Act, 2010 (FCRA)"
+        },
+        {
+          "chapter": "Part D",
+          "title": "The Limited Liability Partnership Act, 2008 Overview"
+        }
+      ],
+      "status": "published",
+      "created_at": "2026-09-25T18:31:10.315Z",
+      "updated_at": "2026-09-25T18:31:10.315Z"
+    },
+    {
+      "id": "book-vol-1",
+      "slug": "volume-1-ca-corporate-law-master-codex",
+      "type": "book",
+      "title": "Part 1: The Indian Contract Act, 1872",
+      "subtitle": "Units 1 - 9 • Smart Revision Question Bank with Model Answers.",
+      "pages_or_duration": "540 Pages",
+      "price": 249,
+      "original_price": 449,
+      "badge": "Volume 1",
+      "category": "CA Foundation Paper 2",
+      "description": "Complete line-by-line coverage of Companies Act 2013 with 45+ ROC circulars and past 10 attempts solved questions. Includes flowchart summaries and penalty code tables.",
+      "cover_image": "/covers/vol1-codex.webp",
+      "preview_file": "sample-preview-vol-1.pdf",
+      "full_file_key": "vault/ca-corp-law-vol1-full-2026.pdf",
+      "highlights": [
+        "Complete Sections 1 to 148 of Companies Act 2013",
+        "45+ ROC Circulars, MCA Notifications & General Rules",
+        "10 Past Exam Attempts Model Solved Answers",
+        "Summary limit tables & penal provisions checklist"
+      ],
+      "syllabus": [
+        {
+          "chapter": "Chapter 1",
+          "title": "Preliminary & Key Statutory Definitions (Sec 1-2)"
+        },
+        {
+          "chapter": "Chapter 2",
+          "title": "Incorporation of Company & Incidental Matters (Sec 3-22)"
+        },
+        {
+          "chapter": "Chapter 3",
+          "title": "Prospectus and Allotment of Securities (Sec 23-42)"
+        },
+        {
+          "chapter": "Chapter 4",
+          "title": "Share Capital and Debentures (Sec 43-72)"
+        },
+        {
+          "chapter": "Chapter 5",
+          "title": "Acceptance of Deposits by Companies (Sec 73-76A)"
+        },
+        {
+          "chapter": "Chapter 6",
+          "title": "Registration of Charges (Sec 77-87)"
+        },
+        {
+          "chapter": "Chapter 7",
+          "title": "Management and Administration (Sec 88-122)"
+        },
+        {
+          "chapter": "Chapter 8",
+          "title": "Declaration and Payment of Dividend (Sec 123-127)"
+        },
+        {
+          "chapter": "Chapter 9",
+          "title": "Accounts of Companies & CSR Mandates (Sec 128-138)"
+        },
+        {
+          "chapter": "Chapter 10",
+          "title": "Audit and Auditors (Sec 139-148)"
+        }
+      ],
+      "status": "published",
+      "created_at": "2026-09-25T18:31:10.312Z",
+      "updated_at": "2026-09-25T18:31:10.312Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "LK-ORD-275152",
+      "user_id": "usr-1790766980375-305",
+      "total_amount": 199,
+      "discount_amount": 50,
+      "coupon_code": "LAW20",
+      "payment_status": "PAID",
+      "payment_gateway": "razorpay",
+      "gateway_order_id": "order_da4282401822b3ad",
+      "gateway_payment_id": "pay_test_1790766980499",
+      "gateway_signature": "sig_test_verified",
+      "shipping_name": "Parth Test Student",
+      "shipping_email": "student_1790766980245@gmail.com",
+      "shipping_phone": "+91 99887 76655",
+      "shipping_address": "Digital Student Vault Access",
+      "tracking_number": "INSTANT-DRM-VAULT",
+      "created_at": "2026-09-30T11:16:20.490Z",
+      "updated_at": "2026-09-30T11:16:20.502Z"
+    },
+    {
+      "id": "LK-ORD-949221",
+      "user_id": "usr-1790764748858-906",
+      "total_amount": 998,
+      "discount_amount": 250,
+      "coupon_code": "LAW20",
+      "payment_status": "PAID",
+      "payment_gateway": "razorpay",
+      "gateway_order_id": "order_9c46fe8c44188aec",
+      "gateway_payment_id": "pay_LK_1790764748992",
+      "gateway_signature": "sig_test_1790764748992",
+      "shipping_name": "Enrolled Candidate",
+      "shipping_email": "candidate@lawkaksha.edu",
+      "shipping_phone": "+91 98765 43210",
+      "shipping_address": "B-402, Shanti Heights, Shivaji Nagar, Pune, Maharashtra - 411005",
+      "tracking_number": "DTDC-8346990",
+      "created_at": "2026-09-30T10:39:08.876Z",
+      "updated_at": "2026-09-30T10:39:09.001Z"
+    },
+    {
+      "id": "LK-ORD-425586",
+      "user_id": "usr-1790362806375-687",
+      "total_amount": 199,
+      "discount_amount": 50,
+      "coupon_code": "LAW20",
+      "payment_status": "PAID",
+      "payment_gateway": "razorpay",
+      "gateway_order_id": "order_2bbfa9e3869c60ee",
+      "gateway_payment_id": "pay_LK_1790454529990",
+      "gateway_signature": "sig_test_1790454529990",
+      "shipping_name": "Rohan Deshmukh",
+      "shipping_email": "rohan.d@gmail.com",
+      "shipping_phone": "+91 98765 43210",
+      "shipping_address": "B-402, Shanti Heights, Shivaji Nagar, Pune, Maharashtra - 411005",
+      "tracking_number": "DTDC-7956419",
+      "created_at": "2026-09-26T20:28:49.970Z",
+      "updated_at": "2026-09-26T20:28:50.000Z"
+    },
+    {
+      "id": "LK-ORD-238949",
+      "user_id": "usr-1790362806375-687",
+      "total_amount": 310,
+      "discount_amount": 78,
+      "coupon_code": "LAW20",
+      "payment_status": "PAID",
+      "payment_gateway": "razorpay",
+      "gateway_order_id": "order_fc59653a42250b8a",
+      "gateway_payment_id": "pay_LK_1790454491453",
+      "gateway_signature": "sig_test_1790454491453",
+      "shipping_name": "Rohan Deshmukh",
+      "shipping_email": "rohan.d@gmail.com",
+      "shipping_phone": "+91 98765 43210",
+      "shipping_address": "B-402, Shanti Heights, Shivaji Nagar, Pune, Maharashtra - 411005",
+      "tracking_number": "DTDC-7366362",
+      "created_at": "2026-09-26T20:28:11.437Z",
+      "updated_at": "2026-09-26T20:28:11.467Z"
+    },
+    {
+      "id": "LK-ORD-218906",
+      "user_id": "usr-1790362806375-687",
+      "total_amount": 838,
+      "discount_amount": 210,
+      "coupon_code": "LAW20",
+      "payment_status": "PAID",
+      "payment_gateway": "razorpay",
+      "gateway_order_id": "order_5238246d0d96b10f",
+      "gateway_payment_id": "pay_LK_1790363162527",
+      "gateway_signature": "sig_test_1790363162527",
+      "shipping_name": "Rohan Deshmukh",
+      "shipping_email": "rohan.d@gmail.com",
+      "shipping_phone": "+91 98765 43210",
+      "shipping_address": "B-402, Shanti Heights, Shivaji Nagar, Pune, Maharashtra - 411005",
+      "tracking_number": "DTDC-7365764",
+      "created_at": "2026-09-25T19:06:02.506Z",
+      "updated_at": "2026-09-25T19:06:02.543Z"
+    },
+    {
+      "id": "LK-ORD-429424",
+      "user_id": "usr-1790362806375-687",
+      "total_amount": 159,
+      "discount_amount": 40,
+      "coupon_code": "LAW20",
+      "payment_status": "PAID",
+      "payment_gateway": "razorpay",
+      "gateway_order_id": "order_6a8993dc6f6be765",
+      "gateway_payment_id": "pay_LK_1790362806393",
+      "gateway_signature": "sig_test_1790362806393",
+      "shipping_name": "Rohan Deshmukh",
+      "shipping_email": "rohan.d@gmail.com",
+      "shipping_phone": "+91 98765 43210",
+      "shipping_address": "B-402, Shanti Heights, Shivaji Nagar, Pune, Maharashtra - 411005",
+      "tracking_number": "DTDC-8149822",
+      "created_at": "2026-09-25T19:00:06.380Z",
+      "updated_at": "2026-09-25T19:00:06.402Z"
+    },
+    {
+      "id": "LK-ORD-895208",
+      "user_id": "usr-1790361618466-227",
+      "total_amount": 279,
+      "discount_amount": 70,
+      "coupon_code": "LAW20",
+      "payment_status": "PAID",
+      "payment_gateway": "razorpay",
+      "gateway_order_id": "order_9dd4f127ccf0b1eb",
+      "gateway_payment_id": "pay_test_1790361618611",
+      "gateway_signature": "sig_test_verified",
+      "shipping_name": "Parth Test Student",
+      "shipping_email": "student_1790361618329@gmail.com",
+      "shipping_phone": "+91 99887 76655",
+      "shipping_address": "Digital Student Vault Access",
+      "tracking_number": "INSTANT-DRM-VAULT",
+      "created_at": "2026-09-25T18:40:18.604Z",
+      "updated_at": "2026-09-25T18:40:18.614Z"
+    },
+    {
+      "id": "LK-ORD-982100",
+      "user_id": "usr-student-001",
+      "total_amount": 399,
+      "discount_amount": 100,
+      "coupon_code": "LAW20",
+      "payment_status": "PAID",
+      "payment_gateway": "razorpay",
+      "gateway_order_id": "order_mock_982100",
+      "gateway_payment_id": "pay_mock_982100",
+      "gateway_signature": "sig_mock_verified",
+      "shipping_name": "Enrolled Candidate",
+      "shipping_email": "candidate@thelawkaksha.com",
+      "shipping_phone": "+91 98765 43210",
+      "shipping_address": "Flat 402, Nariman Point, Mumbai, Maharashtra - 400021",
+      "tracking_number": "INSTANT-DRM-VAULT",
+      "created_at": "2026-09-25T18:31:10.554Z",
+      "updated_at": "2026-09-25T18:31:10.554Z"
+    }
+  ],
+  "order_items": [
+    {
+      "id": "oi-1790766980492-584",
+      "order_id": "LK-ORD-275152",
+      "product_id": "book-vol-2",
+      "format": "pdf",
+      "price": 249,
+      "quantity": 1,
+      "unlocked_ids": [
+        "book-vol-2"
+      ],
+      "created_at": "2026-09-30T11:16:20.492Z",
+      "updated_at": "2026-09-30T11:16:20.492Z"
+    },
+    {
+      "id": "oi-1790764748987-180",
+      "order_id": "LK-ORD-949221",
+      "product_id": "video-classes",
+      "format": "pdf",
+      "price": 999,
+      "quantity": 1,
+      "unlocked_ids": [
+        "video-classes"
+      ],
+      "created_at": "2026-09-30T10:39:08.987Z",
+      "updated_at": "2026-09-30T10:39:08.987Z"
+    },
+    {
+      "id": "oi-1790764748879-747",
+      "order_id": "LK-ORD-949221",
+      "product_id": "book-vol-2",
+      "format": "pdf",
+      "price": 249,
+      "quantity": 1,
+      "unlocked_ids": [
+        "book-vol-2"
+      ],
+      "created_at": "2026-09-30T10:39:08.882Z",
+      "updated_at": "2026-09-30T10:39:08.882Z"
+    },
+    {
+      "id": "oi-1790454529979-660",
+      "order_id": "LK-ORD-425586",
+      "product_id": "book-mcq",
+      "format": "pdf",
+      "price": 249,
+      "quantity": 1,
+      "unlocked_ids": [
+        "book-mcq"
+      ],
+      "created_at": "2026-09-26T20:28:49.980Z",
+      "updated_at": "2026-09-26T20:28:49.980Z"
+    },
+    {
+      "id": "oi-1790454491443-202",
+      "order_id": "LK-ORD-238949",
+      "product_id": "book-vol-1",
+      "format": "pdf",
+      "price": 388,
+      "quantity": 1,
+      "unlocked_ids": [
+        "book-vol-1",
+        "book-vol-2"
+      ],
+      "created_at": "2026-09-26T20:28:11.443Z",
+      "updated_at": "2026-09-26T20:28:11.443Z"
+    },
+    {
+      "id": "oi-1790363162514-210",
+      "order_id": "LK-ORD-218906",
+      "product_id": "book-vol-2",
+      "format": "pdf",
+      "price": 349,
+      "quantity": 1,
+      "unlocked_ids": [
+        "book-vol-2"
+      ],
+      "created_at": "2026-09-25T19:06:02.514Z",
+      "updated_at": "2026-09-25T19:06:02.514Z"
+    },
+    {
+      "id": "oi-1790363162511-93",
+      "order_id": "LK-ORD-218906",
+      "product_id": "book-vol-1",
+      "format": "paperback",
+      "price": 699,
+      "quantity": 1,
+      "unlocked_ids": [
+        "book-vol-1",
+        "book-vol-2"
+      ],
+      "created_at": "2026-09-25T19:06:02.511Z",
+      "updated_at": "2026-09-25T19:06:02.511Z"
+    },
+    {
+      "id": "oi-1790362806384-510",
+      "order_id": "LK-ORD-429424",
+      "product_id": "book-ldr",
+      "format": "pdf",
+      "price": 199,
+      "quantity": 1,
+      "created_at": "2026-09-25T19:00:06.384Z",
+      "updated_at": "2026-09-25T19:00:06.384Z"
+    },
+    {
+      "id": "oi-1790361618607-460",
+      "order_id": "LK-ORD-895208",
+      "product_id": "book-vol-2",
+      "format": "pdf",
+      "price": 349,
+      "quantity": 1,
+      "created_at": "2026-09-25T18:40:18.607Z",
+      "updated_at": "2026-09-25T18:40:18.607Z"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "enr-1790766980504-582",
+      "user_id": "usr-1790766980375-305",
+      "product_id": "book-vol-2",
+      "order_id": "LK-ORD-275152",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-30T11:16:20.504Z",
+      "updated_at": "2026-09-30T11:16:20.504Z"
+    },
+    {
+      "id": "enr-1790764749005-838",
+      "user_id": "usr-1790764748858-906",
+      "product_id": "book-vol-2",
+      "order_id": "LK-ORD-949221",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-30T10:39:09.005Z",
+      "updated_at": "2026-09-30T10:39:09.005Z"
+    },
+    {
+      "id": "enr-1790764749003-608",
+      "user_id": "usr-1790764748858-906",
+      "product_id": "video-classes",
+      "order_id": "LK-ORD-949221",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-30T10:39:09.003Z",
+      "updated_at": "2026-09-30T10:39:09.003Z"
+    },
+    {
+      "id": "enr-1790454530005-475",
+      "user_id": "usr-1790362806375-687",
+      "product_id": "book-mcq",
+      "order_id": "LK-ORD-425586",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-26T20:28:50.005Z",
+      "updated_at": "2026-09-26T20:28:50.005Z"
+    },
+    {
+      "id": "enr-1790363162550-990",
+      "user_id": "usr-1790362806375-687",
+      "product_id": "book-vol-1",
+      "order_id": "LK-ORD-218906",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-25T19:06:02.550Z",
+      "updated_at": "2026-09-25T19:06:02.550Z"
+    },
+    {
+      "id": "enr-1790363162546-358",
+      "user_id": "usr-1790362806375-687",
+      "product_id": "book-vol-2",
+      "order_id": "LK-ORD-218906",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-25T19:06:02.546Z",
+      "updated_at": "2026-09-25T19:06:02.546Z"
+    },
+    {
+      "id": "enr-1790362806405-426",
+      "user_id": "usr-1790362806375-687",
+      "product_id": "book-ldr",
+      "order_id": "LK-ORD-429424",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-25T19:00:06.405Z",
+      "updated_at": "2026-09-25T19:00:06.405Z"
+    },
+    {
+      "id": "enr-1790361618618-565",
+      "user_id": "usr-1790361618466-227",
+      "product_id": "book-vol-2",
+      "order_id": "LK-ORD-895208",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-25T18:40:18.618Z",
+      "updated_at": "2026-09-25T18:40:18.618Z"
+    },
+    {
+      "id": "enr-002",
+      "user_id": "usr-student-001",
+      "product_id": "book-mcq",
+      "order_id": "LK-ORD-982100",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-25T18:31:10.557Z",
+      "updated_at": "2026-09-25T18:31:10.557Z"
+    },
+    {
+      "id": "enr-001",
+      "user_id": "usr-student-001",
+      "product_id": "book-vol-1",
+      "order_id": "LK-ORD-982100",
+      "access_status": "ACTIVE",
+      "created_at": "2026-09-25T18:31:10.555Z",
+      "updated_at": "2026-09-25T18:31:10.555Z"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-004",
+      "product_id": "mains-evaluation",
+      "student_name": "Exemption Candidate",
+      "student_rank": "Cleared CA Inter with 68 in Law",
+      "rating": 5,
+      "title": "The 1-on-1 copy checking boosted my score by 22 marks.",
+      "comment": "I used to write stories instead of legal answers. The 5-pillar rubric taught me how to cite Bare Act provisions and synthesize facts concisely. The audio feedback note from faculty is fantastic.",
+      "is_approved": 1,
+      "created_at": "2026-09-25T18:31:10.562Z",
+      "updated_at": "2026-09-25T18:31:10.562Z"
+    },
+    {
+      "id": "rev-003",
+      "product_id": "book-ldr",
+      "student_name": "CA Final Candidate",
+      "student_rank": "Corporate & Economic Laws",
+      "rating": 5,
+      "title": "Life-saver during the 1.5-day exam gap.",
+      "comment": "You cannot read 800 pages before the exam. These LDR maps condensing penalty codes and filing days into 180 visual pages are pure gold. Must-have for every law aspirant.",
+      "is_approved": 1,
+      "created_at": "2026-09-25T18:31:10.561Z",
+      "updated_at": "2026-09-25T18:31:10.561Z"
+    },
+    {
+      "id": "rev-002",
+      "product_id": "book-mcq",
+      "student_name": "AIR 14 Candidate",
+      "student_rank": "CA Inter",
+      "rating": 5,
+      "title": "Full 30/30 in MCQ section thanks to this Question Bank.",
+      "comment": "Every single question has explanations for why the other 3 options are incorrect. The integrated case studies gave me the exact confidence needed for the tricky ICAI negative marking traps.",
+      "is_approved": 1,
+      "created_at": "2026-09-25T18:31:10.559Z",
+      "updated_at": "2026-09-25T18:31:10.559Z"
+    },
+    {
+      "id": "rev-001",
+      "product_id": "book-vol-1",
+      "student_name": "AIR 03 Candidate",
+      "student_rank": "CA Intermediate (Nov Attempt)",
+      "rating": 5,
+      "title": "Scored 74 in Law! Volume 1 is unmatched.",
+      "comment": "The way Section 96 to 103 are broken down with practical AGM and quorum tables helped me draft crystal clear 6-mark answers. In my exam, 4 descriptive questions were verbatim from The Law Kaksha statutory codex!",
+      "is_approved": 1,
+      "created_at": "2026-09-25T18:31:10.558Z",
+      "updated_at": "2026-09-25T18:31:10.558Z"
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "quiz-other-laws-01",
+      "title": "Corporate Law Master Mock: Board Meetings & Audit Provisions",
+      "subtitle": "Sections 134, 139, 149 & 173 Deep-Dive Examination Simulation",
+      "level": "CA Intermediate Paper 2",
+      "subject": "Corporate & Other Laws",
+      "chapter": "Board of Directors, Audit & Financial Statements",
+      "time_limit_minutes": 30,
+      "total_marks": 30,
+      "positive_marks": 3,
+      "negative_marks": 1,
+      "is_free": 0,
+      "status": "ACTIVE",
+      "questions": [
+        {
+          "id": "q-301",
+          "question": "Under Section 139(2) of the Companies Act, 2013, what is the maximum consecutive term an individual auditor can serve in a prescribed company before mandatory cooling-off?",
+          "options": [
+            "One term of 3 consecutive years",
+            "One term of 5 consecutive years",
+            "Two terms of 5 consecutive years",
+            "Ten consecutive years without cooling-off"
+          ],
+          "correct_option_index": 1,
+          "bare_act_citation": "Section 139(2)(a) of the Companies Act, 2013",
+          "explanation": "Under Section 139(2)(a), no listed company or prescribed class of companies shall appoint or re-appoint an individual as auditor for more than one term of five consecutive years."
+        }
+      ],
+      "created_at": "2026-09-30T10:49:03.036Z",
+      "updated_at": "2026-09-30T10:49:03.036Z"
+    },
+    {
+      "id": "quiz-contract-01",
+      "title": "ICAI Case Scenario Drill: The Indian Contract Act, 1872",
+      "subtitle": "Essential Elements, Legality of Object & Discharge of Contracts",
+      "level": "CA Foundation & Inter",
+      "subject": "Business Laws",
+      "chapter": "The Indian Contract Act, 1872 (Units 1 to 9)",
+      "time_limit_minutes": 20,
+      "total_marks": 20,
+      "positive_marks": 2,
+      "negative_marks": 0.5,
+      "is_free": 1,
+      "status": "ACTIVE",
+      "questions": [
+        {
+          "id": "q-201",
+          "question": "An agreement made without consideration is void under Section 25. Which of the following is a recognized statutory exception under Section 25(1)?",
+          "options": [
+            "Agreement in restraint of trade",
+            "Agreement in writing and registered made on account of natural love and affection between parties standing in near relation",
+            "Oral promise to compensate past voluntary services",
+            "Promise to pay a time-barred debt signed without witnesses"
+          ],
+          "correct_option_index": 1,
+          "bare_act_citation": "Section 25(1) of The Indian Contract Act, 1872",
+          "explanation": "Under Section 25(1), an agreement expressed in writing and registered under the law for the time being in force, made on account of natural love and affection between parties in a near relation, is enforceable without consideration."
+        },
+        {
+          "id": "q-202",
+          "question": "Under Section 68 of the Indian Contract Act, 1872, if a person incapable of entering into a contract is supplied with necessaries suited to his condition in life:",
+          "options": [
+            "The minor is personally liable to pay from his pocket",
+            "The supplier is entitled to be reimbursed from the property of such incapable person",
+            "The contract is completely void and no reimbursement can be claimed",
+            "The parents of the minor are strictly personally liable"
+          ],
+          "correct_option_index": 1,
+          "bare_act_citation": "Section 68 of The Indian Contract Act, 1872",
+          "explanation": "Under Section 68, the person furnishing necessaries is entitled to be reimbursed from the property of the minor/incapable person. There is zero personal liability on the minor."
+        }
+      ],
+      "created_at": "2026-09-30T10:49:03.035Z",
+      "updated_at": "2026-09-30T10:49:03.035Z"
+    },
+    {
+      "id": "quiz-daily-01",
+      "title": "All-India Daily Legal Challenge: Companies Act, 2013 (Sec 96-122)",
+      "subtitle": "10 Timed Statutory Scenario Questions • Free for All Registered Candidates",
+      "level": "CA Intermediate Paper 2",
+      "subject": "Corporate & Other Laws",
+      "chapter": "Chapter VII: Management & Administration (Sections 96 to 122)",
+      "time_limit_minutes": 15,
+      "total_marks": 20,
+      "positive_marks": 2,
+      "negative_marks": 0.5,
+      "is_free": 1,
+      "status": "ACTIVE",
+      "questions": [
+        {
+          "id": "q-101",
+          "question": "Under Section 96 of the Companies Act, 2013, what is the statutory time gap allowed between two consecutive Annual General Meetings (AGMs) of a company?",
+          "options": [
+            "Not more than 12 months",
+            "Not more than 15 months",
+            "Not more than 18 months",
+            "Not more than 6 months from close of financial year only"
+          ],
+          "correct_option_index": 1,
+          "bare_act_citation": "Section 96(1) of the Companies Act, 2013",
+          "explanation": "Section 96(1) mandates that not more than 15 months shall elapse between the date of one AGM and that of the next, subject to the closing of the financial year timeline (6 months)."
+        },
+        {
+          "id": "q-102",
+          "question": "A Public Company has 1,850 members as on the date of its General Meeting. As per Section 103(1)(a)(ii), what is the statutory minimum quorum required?",
+          "options": [
+            "5 members personally present",
+            "15 members personally present",
+            "30 members personally present",
+            "15 members present personally or by proxy"
+          ],
+          "correct_option_index": 1,
+          "bare_act_citation": "Section 103(1)(a)(ii) of the Companies Act, 2013",
+          "explanation": "Under Section 103(1)(a)(ii), if the number of members is more than 1,000 but up to 5,000, the statutory quorum is 15 members personally present. Proxies are strictly excluded from quorum calculation."
+        },
+        {
+          "id": "q-103",
+          "question": "Which of the following business items CANNOT be transacted through a Postal Ballot under Section 110 of the Companies Act, 2013 read with Rule 22?",
+          "options": [
+            "Alteration of Memorandum of Association (MOA) objects clause",
+            "Ordinary Business at an Annual General Meeting",
+            "Issue of shares with differential voting rights",
+            "Buy-back of own shares by the company"
+          ],
+          "correct_option_index": 1,
+          "bare_act_citation": "Section 110(1) & Rule 22 of Companies (Management and Administration) Rules, 2014",
+          "explanation": "Ordinary business items at an AGM (Adoption of accounts, dividend declaration, director appointments, auditor appointment) and items where directors/auditors have a right to be heard cannot be passed through postal ballot."
+        },
+        {
+          "id": "q-104",
+          "question": "Under Section 100(2), what is the minimum voting power required for members of a company having share capital to requisition an Extraordinary General Meeting (EGM)?",
+          "options": [
+            "Not less than 5% of paid-up share capital",
+            "Not less than 1/10th (10%) of paid-up share capital carrying voting rights",
+            "Not less than 25% of paid-up share capital",
+            "At least 50 members holding voting rights"
+          ],
+          "correct_option_index": 1,
+          "bare_act_citation": "Section 100(2)(a) of the Companies Act, 2013",
+          "explanation": "Section 100(2)(a) specifies that members holding not less than one-tenth of such of the paid-up share capital of the company as carries the right of voting can validly requisition an EGM."
+        },
+        {
+          "id": "q-105",
+          "question": "What is the statutory length of clear notice required to call an Annual General Meeting under Section 101(1) of the Companies Act, 2013?",
+          "options": [
+            "14 clear days",
+            "21 clear days",
+            "30 clear days",
+            "21 days including the date of sending and date of meeting"
+          ],
+          "correct_option_index": 1,
+          "bare_act_citation": "Section 101(1) of the Companies Act, 2013",
+          "explanation": "Section 101(1) stipulates that a general meeting of a company may be called by giving not less than clear 21 days notice either in writing or through electronic mode."
+        }
+      ],
+      "created_at": "2026-09-30T10:49:03.031Z",
+      "updated_at": "2026-09-30T10:49:03.031Z"
+    }
+  ],
+  "quiz_attempts": [
+    {
+      "id": "att-seed-005",
+      "quiz_id": "quiz-daily-01",
+      "quiz_title": "All-India Daily Legal Challenge: Companies Act, 2013 (Sec 96-122)",
+      "user_id": "usr-ranker-005",
+      "candidate_name": "Exemption Candidate",
+      "student_id": "LK-EXM-005",
+      "score": 14,
+      "total_marks": 20,
+      "accuracy": 75,
+      "correct_count": 3,
+      "incorrect_count": 1,
+      "unattempted_count": 1,
+      "time_taken_seconds": 480,
+      "answers": {
+        "q-101": 1,
+        "q-102": 1,
+        "q-103": 1
+      },
+      "created_at": "2026-09-29T16:49:03.038Z",
+      "updated_at": "2026-09-30T10:49:03.047Z"
+    },
+    {
+      "id": "att-seed-004",
+      "quiz_id": "quiz-daily-01",
+      "quiz_title": "All-India Daily Legal Challenge: Companies Act, 2013 (Sec 96-122)",
+      "user_id": "usr-student-001",
+      "candidate_name": "Enrolled Candidate",
+      "student_id": "LK-STU-084201",
+      "score": 16,
+      "total_marks": 20,
+      "accuracy": 80,
+      "correct_count": 4,
+      "incorrect_count": 1,
+      "unattempted_count": 0,
+      "time_taken_seconds": 420,
+      "answers": {
+        "q-101": 1,
+        "q-102": 1,
+        "q-103": 0,
+        "q-104": 1,
+        "q-105": 1
+      },
+      "created_at": "2026-09-29T22:49:03.038Z",
+      "updated_at": "2026-09-30T10:49:03.045Z"
+    },
+    {
+      "id": "att-seed-003",
+      "quiz_id": "quiz-daily-01",
+      "quiz_title": "All-India Daily Legal Challenge: Companies Act, 2013 (Sec 96-122)",
+      "user_id": "usr-ranker-003",
+      "candidate_name": "AIR 03 Candidate",
+      "student_id": "LK-AIR-003",
+      "score": 17.5,
+      "total_marks": 20,
+      "accuracy": 88,
+      "correct_count": 4,
+      "incorrect_count": 1,
+      "unattempted_count": 0,
+      "time_taken_seconds": 340,
+      "answers": {
+        "q-101": 1,
+        "q-102": 1,
+        "q-103": 1,
+        "q-104": 0,
+        "q-105": 1
+      },
+      "created_at": "2026-09-30T02:49:03.038Z",
+      "updated_at": "2026-09-30T10:49:03.042Z"
+    },
+    {
+      "id": "att-seed-002",
+      "quiz_id": "quiz-daily-01",
+      "quiz_title": "All-India Daily Legal Challenge: Companies Act, 2013 (Sec 96-122)",
+      "user_id": "usr-ranker-002",
+      "candidate_name": "AIR 02 Candidate",
+      "student_id": "LK-AIR-002",
+      "score": 18,
+      "total_marks": 20,
+      "accuracy": 90,
+      "correct_count": 4,
+      "incorrect_count": 1,
+      "unattempted_count": 0,
+      "time_taken_seconds": 310,
+      "answers": {
+        "q-101": 1,
+        "q-102": 1,
+        "q-103": 1,
+        "q-104": 1,
+        "q-105": 0
+      },
+      "created_at": "2026-09-30T05:49:03.038Z",
+      "updated_at": "2026-09-30T10:49:03.040Z"
+    },
+    {
+      "id": "att-seed-001",
+      "quiz_id": "quiz-daily-01",
+      "quiz_title": "All-India Daily Legal Challenge: Companies Act, 2013 (Sec 96-122)",
+      "user_id": "usr-ranker-001",
+      "candidate_name": "AIR 01 Candidate",
+      "student_id": "LK-AIR-001",
+      "score": 20,
+      "total_marks": 20,
+      "accuracy": 100,
+      "correct_count": 5,
+      "incorrect_count": 0,
+      "unattempted_count": 0,
+      "time_taken_seconds": 245,
+      "answers": {
+        "q-101": 1,
+        "q-102": 1,
+        "q-103": 1,
+        "q-104": 1,
+        "q-105": 1
+      },
+      "created_at": "2026-09-30T08:49:03.038Z",
+      "updated_at": "2026-09-30T10:49:03.038Z"
+    }
+  ]
+}
