@@ -513,42 +513,44 @@ export function QuizTakingModal({
 
         {/* Footer Actions */}
         {!result && quiz && currentQ && !loading && (
-          <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0">
+          <div className="px-3 sm:px-6 py-3 sm:py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-2 shrink-0">
             <button
               onClick={() => toggleMarkForReview(currentQ.id)}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all border ${
+              className={`px-3 sm:px-4 py-2 rounded-full text-xs font-bold transition-all border min-h-[40px] cursor-pointer ${
                 markedForReview[currentQ.id]
                   ? "bg-amber-100 text-amber-800 border-amber-300"
                   : "bg-white text-slate-600 border-slate-300 hover:bg-slate-100"
               }`}
             >
-              {markedForReview[currentQ.id] ? "Marked for Review" : "Mark for Review"}
+              {markedForReview[currentQ.id] ? "Marked" : "Review"}
             </button>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <button
                 disabled={currentIndex === 0}
                 onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
-                className="px-4 py-2 rounded-full bg-white border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1"
+                className="px-3 sm:px-4 py-2 rounded-full bg-white border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1 min-h-[40px] cursor-pointer"
               >
-                <ChevronLeft className="w-4 h-4" /> Previous
+                <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>Prev</span>
               </button>
 
               {isLastQuestion ? (
                 <button
                   onClick={handleSubmitQuiz}
                   disabled={isSubmitting}
-                  className="px-6 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 disabled:opacity-60"
+                  className="px-4 sm:px-6 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 disabled:opacity-60 min-h-[40px] cursor-pointer"
                 >
-                  <CheckCircle className="w-4 h-4" />
-                  {isSubmitting ? "Evaluating..." : "Submit Quiz"}
+                  <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <span>{isSubmitting ? "Evaluating..." : "Submit"}</span>
                 </button>
               ) : (
                 <button
                   onClick={() => setCurrentIndex((prev) => Math.min(quiz.questions.length - 1, prev + 1))}
-                  className="px-5 py-2 rounded-full bg-[#0A192F] hover:bg-[#1E3A8A] text-white text-xs font-bold transition-colors flex items-center gap-1"
+                  className="px-3.5 sm:px-5 py-2 rounded-full bg-[#0A192F] hover:bg-[#1E3A8A] text-white text-xs font-bold transition-colors flex items-center gap-1 min-h-[40px] cursor-pointer"
                 >
-                  Next <ChevronRight className="w-4 h-4" />
+                  <span>Next</span>
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
               )}
             </div>

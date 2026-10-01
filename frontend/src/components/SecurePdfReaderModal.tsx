@@ -129,20 +129,21 @@ export function SecurePdfReaderModal({
           </div>
 
           {/* Quick Chapter Selector, Zoom, Dark Mode, & Close */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* Quick Chapter Jump Dropdown */}
-            <div className="relative hidden md:block">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+            {/* Quick Chapter Jump Dropdown (Available on Mobile & Desktop) */}
+            <div className="relative">
               <select
                 onChange={(e) => scrollToPage(Number(e.target.value))}
-                className={`text-xs font-medium py-1.5 pl-3.5 pr-8 rounded-full border focus:outline-none focus:border-[#0071E3] cursor-pointer appearance-none ${
+                className={`text-[11px] sm:text-xs font-medium py-1.5 pl-2.5 sm:pl-3.5 pr-6 sm:pr-8 rounded-full border focus:outline-none focus:border-[#0071E3] cursor-pointer appearance-none max-w-[110px] xs:max-w-[140px] sm:max-w-none truncate ${
                   isDarkMode
                     ? "bg-slate-900 border-slate-700 text-slate-200"
                     : "bg-black/[0.04] border-black/[0.06] text-[#1D1D1F] hover:bg-black/[0.08]"
                 }`}
                 defaultValue=""
+                aria-label="Jump to chapter"
               >
                 <option value="" disabled>
-                  Jump to Chapter...
+                  Chapters...
                 </option>
                 {CHAPTERS_LIST.map((ch) => (
                   <option key={ch.page} value={ch.page}>
@@ -150,12 +151,12 @@ export function SecurePdfReaderModal({
                   </option>
                 ))}
               </select>
-              <ChevronDown className="w-3.5 h-3.5 text-black/40 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <ChevronDown className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-black/40 absolute right-2 sm:right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
 
             {/* Zoom Controls */}
             <div
-              className={`flex items-center rounded-full border px-1 sm:px-1.5 py-0.5 text-xs ${
+              className={`hidden xs:flex items-center rounded-full border px-1 sm:px-1.5 py-0.5 text-xs ${
                 isDarkMode ? "bg-slate-900 border-slate-700" : "bg-black/[0.04] border-black/[0.06]"
               }`}
             >
@@ -192,7 +193,7 @@ export function SecurePdfReaderModal({
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#86868B] hover:text-[#1D1D1F] flex items-center justify-center transition-colors cursor-pointer ml-1"
+              className="w-8 h-8 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 dark:bg-rose-950/40 dark:text-rose-400 flex items-center justify-center transition-colors cursor-pointer ml-0.5"
               aria-label="Close Reader"
             >
               <X className="w-4 h-4" />

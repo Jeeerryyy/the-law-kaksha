@@ -319,13 +319,18 @@ export function SecurePdfReader({
     }
   }, []);
 
+  // Double tap and pinch tracking for mobile touch
+  const [initialPinchDist, setInitialPinchDist] = useState<number | null>(null);
+  const [initialScale, setInitialScale] = useState<number>(1.25);
+  const lastTapRef = useRef<number>(0);
+
   // Fit to Width calculation with responsive screen padding awareness
   const handleFitWidth = useCallback(async () => {
     if (!containerRef.current || !pdfDoc) return;
     try {
       const page = await pdfDoc.getPage(currentPage);
       const viewport = page.getViewport({ scale: 1, rotation });
-      const padding = typeof window !== "undefined" && window.innerWidth < 640 ? 12 : 56;
+      const padding = typeof window !== "undefined" && window.innerWidth < 640 ? 8 : 48;
       const containerWidth = containerRef.current.clientWidth - padding;
       if (containerWidth > 0 && viewport.width > 0) {
         const targetScale = containerWidth / viewport.width;
@@ -424,21 +429,59 @@ export function SecurePdfReader({
     }
   }, [pdfDoc, currentPage, scale, rotation, renderPage]);
 
-  // Touch Swipe Handlers for mobile page navigation
+  // Touch & Gesture Handlers for Mobile (Swipe, Double Tap to Zoom, Pinch-to-Zoom)
+  const getTouchDistance = (e: React.TouchEvent) => {
+    if (e.touches.length < 2) return 0;
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
+
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 1) {
+      // Double tap check
+      const now = Date.now();
+      if (now - lastTapRef.current < 300) {
+        // Double tapped! Toggle zoom
+        setScale((current) => (current > 1.3 ? 0.95 : 1.75));
+        lastTapRef.current = 0;
+        return;
+      }
+      lastTapRef.current = now;
+
       setTouchStartX(e.touches[0].clientX);
       setTouchStartY(e.touches[0].clientY);
+    } else if (e.touches.length === 2) {
+      // Pinch started
+      const dist = getTouchDistance(e);
+      setInitialPinchDist(dist);
+      setInitialScale(scale);
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length === 2 && initialPinchDist !== null) {
+      const currentDist = getTouchDistance(e);
+      if (currentDist > 0 && initialPinchDist > 0) {
+        const factor = currentDist / initialPinchDist;
+        const nextScale = Math.min(Math.max(initialScale * factor, 0.5), 3.0);
+        setScale(nextScale);
+      }
     }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
+    if (initialPinchDist !== null) {
+      setInitialPinchDist(null);
+      return;
+    }
+
     if (touchStartX === null || touchStartY === null) return;
     const deltaX = e.changedTouches[0].clientX - touchStartX;
     const deltaY = e.changedTouches[0].clientY - touchStartY;
 
-    // Trigger only on intentional horizontal swipe (>50px and mainly horizontal)
-    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
+    // Trigger page turn only on intentional horizontal swipe when not heavily zoomed
+    if (scale <= 1.4 && Math.abs(deltaX) > 48 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
       if (deltaX < 0) {
         // Swiped Left -> Next Page
         setCurrentPage((p) => Math.min(p + 1, totalPages));
@@ -962,8 +1005,9 @@ export function SecurePdfReader({
         <div
           ref={containerRef}
           onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          className="flex-1 overflow-auto flex flex-col items-center justify-start py-3 sm:py-8 px-1.5 sm:px-4 relative scroll-smooth"
+          className="flex-1 overflow-auto flex flex-col items-center justify-start py-2 sm:py-8 px-1 sm:px-4 relative scroll-smooth overscroll-contain"
           style={{ background: themeStyles.canvasBg }}
           onContextMenu={blockContext}
         >

@@ -132,12 +132,12 @@ export function SmartChoicePricing() {
           </p>
 
           {/* Course Tabs Toggle */}
-          <div className="pt-2 flex justify-center">
-            <div className="inline-flex p-1 rounded-full bg-[#F5F5F7] border border-black/[0.04]">
+          <div className="pt-2 flex justify-center max-w-full">
+            <div className="inline-flex p-1 rounded-full bg-[#F5F5F7] border border-black/[0.04] max-w-full overflow-x-auto no-scrollbar">
               <button
                 type="button"
                 onClick={() => setActiveTab("ca")}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer min-h-[44px] ${
+                className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer min-h-[42px] whitespace-nowrap shrink-0 ${
                   activeTab === "ca"
                     ? "bg-white text-[#1D1D1F] shadow-xs font-semibold"
                     : "text-[#6E6E73] hover:text-[#1D1D1F]"
@@ -148,7 +148,7 @@ export function SmartChoicePricing() {
               <button
                 type="button"
                 onClick={() => setActiveTab("cs")}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer min-h-[44px] ${
+                className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer min-h-[42px] whitespace-nowrap shrink-0 ${
                   activeTab === "cs"
                     ? "bg-white text-[#1D1D1F] shadow-xs font-semibold"
                     : "text-[#6E6E73] hover:text-[#1D1D1F]"

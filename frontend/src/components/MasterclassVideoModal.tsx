@@ -86,28 +86,29 @@ export function MasterclassVideoModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200">
-      <div className="bg-white border border-black/[0.08] w-full max-w-6xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xl flex items-center justify-center p-0 sm:p-6 overflow-y-auto animate-in fade-in duration-200">
+      <div className="bg-white border-0 sm:border border-black/[0.08] w-full max-w-6xl h-full sm:h-auto rounded-none sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-none sm:max-h-[92vh]">
         {/* Modal Top Header */}
-        <div className="px-5 sm:px-7 py-4 bg-white/90 backdrop-blur-md border-b border-black/[0.06] flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full bg-[#0071E3]/10 text-[11px] font-semibold text-[#0071E3] flex items-center gap-1.5">
+        <div className="px-4 sm:px-7 py-3 sm:py-4 bg-white/90 backdrop-blur-md border-b border-black/[0.06] flex items-center justify-between gap-2 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <span className="px-2.5 sm:px-3 py-1 rounded-full bg-[#0071E3]/10 text-[10px] sm:text-[11px] font-semibold text-[#0071E3] flex items-center gap-1.5 shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0071E3] animate-pulse" />
               HD Masterclass
             </span>
-            <span className="text-xs text-[#86868B] truncate max-w-md hidden sm:inline font-medium">
-              {courseTitle} <span className="text-[#1D1D1F] font-semibold">• {activeLesson.faculty}</span>
+            <span className="text-xs text-[#86868B] truncate max-w-[150px] sm:max-w-md font-medium">
+              {courseTitle} <span className="text-[#1D1D1F] font-semibold hidden xs:inline">• {activeLesson.faculty}</span>
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <div className="text-[11px] text-[#86868B] hidden md:flex items-center gap-1.5 font-mono">
               <Shield className="w-3.5 h-3.5 text-[#0071E3]" />
               <span>DRM Watermarked • {studentName} ({rollNumber})</span>
             </div>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#1D1D1F] flex items-center justify-center transition-all active:scale-95"
+              className="w-8 h-8 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center transition-colors cursor-pointer"
+              aria-label="Close modal"
             >
               <X className="w-4 h-4" />
             </button>
@@ -115,11 +116,11 @@ export function MasterclassVideoModal({
         </div>
 
         {/* Video Player & Interaction Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 flex-1 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-3 flex-1 overflow-y-auto lg:overflow-hidden">
           {/* Left 2 Cols: Main Video & Player Controls */}
-          <div className="lg:col-span-2 flex flex-col bg-[#0A0A0C] relative border-b lg:border-b-0 lg:border-r border-black/[0.06]">
+          <div className="lg:col-span-2 flex flex-col bg-[#0A0A0C] relative border-b lg:border-b-0 lg:border-r border-black/[0.06] shrink-0">
             {/* Mock HD Video Stage */}
-            <div className="relative flex-1 min-h-[260px] sm:min-h-[380px] bg-gradient-to-b from-[#16161A] via-[#0A0A0C] to-[#0A0A0C] flex flex-col items-center justify-center overflow-hidden p-6">
+            <div className="relative flex-1 min-h-[240px] sm:min-h-[380px] bg-gradient-to-b from-[#16161A] via-[#0A0A0C] to-[#0A0A0C] flex flex-col items-center justify-center overflow-hidden p-4 sm:p-6">
               {/* Dynamic Forensic Watermark Overlay */}
               <div className="absolute inset-0 pointer-events-none select-none opacity-10 overflow-hidden flex flex-wrap gap-12 p-8 rotate-[-12deg]">
                 {Array.from({ length: 12 }).map((_, i) => (
@@ -130,31 +131,32 @@ export function MasterclassVideoModal({
               </div>
 
               {/* Central Video Graphic / Faculty Presentation */}
-              <div className="relative z-10 text-center max-w-lg space-y-3">
+              <div className="relative z-10 text-center max-w-lg space-y-2.5 sm:space-y-3">
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-16 h-16 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white flex items-center justify-center shadow-lg shadow-[#0071E3]/30 mx-auto transition-all transform hover:scale-105 active:scale-95"
+                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white flex items-center justify-center shadow-lg shadow-[#0071E3]/30 mx-auto transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+                  aria-label={isPlaying ? "Pause" : "Play"}
                 >
                   {isPlaying ? (
-                    <Pause className="w-7 h-7 fill-white" />
+                    <Pause className="w-6 h-6 sm:w-7 sm:h-7 fill-white" />
                   ) : (
-                    <Play className="w-7 h-7 fill-white ml-0.5" />
+                    <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-white ml-0.5" />
                   )}
                 </button>
-                <h3 className="text-lg sm:text-xl font-bold text-white px-4 tracking-tight">
+                <h3 className="text-base sm:text-xl font-bold text-white px-2 sm:px-4 tracking-tight">
                   {activeLesson.title}
                 </h3>
-                <p className="text-xs text-white/60 font-medium">
+                <p className="text-[11px] sm:text-xs text-white/60 font-medium">
                   Delivered by {activeLesson.faculty} • Duration: {activeLesson.duration}
                 </p>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[11px] font-medium text-white/90">
+                <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[10px] sm:text-[11px] font-medium text-white/90">
                   <Flame className="w-3.5 h-3.5 text-[#0071E3]" />
                   <span>High Yield Section Analysis • 10-Yr Trend Mapped</span>
                 </div>
               </div>
 
               {/* Progress Slider */}
-              <div className="absolute bottom-14 left-6 right-6 z-20">
+              <div className="absolute bottom-12 sm:bottom-14 left-4 sm:left-6 right-4 sm:right-6 z-20">
                 <div className="w-full bg-white/20 hover:bg-white/30 h-1.5 rounded-full overflow-hidden cursor-pointer transition-colors">
                   <div className="bg-[#0071E3] h-full w-2/5 rounded-full relative">
                     <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-md" />
@@ -167,38 +169,38 @@ export function MasterclassVideoModal({
               </div>
 
               {/* Bottom Custom Video Controller Bar */}
-              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/80 to-transparent px-6 flex items-center justify-between z-20">
-                <div className="flex items-center gap-3">
+              <div className="absolute bottom-0 left-0 right-0 h-11 sm:h-12 bg-gradient-to-t from-black/80 to-transparent px-3 sm:px-6 flex items-center justify-between z-20">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <button
                     onClick={() => setIsPlaying(!isPlaying)}
-                    className="text-white hover:text-[#0071E3] transition-colors"
+                    className="text-white hover:text-[#0071E3] transition-colors cursor-pointer"
                   >
                     {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
                   </button>
-                  <button className="text-white/70 hover:text-white transition-colors">
+                  <button className="text-white/70 hover:text-white transition-colors cursor-pointer">
                     <RotateCcw className="w-4 h-4" />
                   </button>
-                  <button className="text-white/70 hover:text-white transition-colors">
+                  <button className="text-white/70 hover:text-white transition-colors cursor-pointer">
                     <RotateCw className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => setIsMuted(!isMuted)}
-                    className="text-white/70 hover:text-white transition-colors"
+                    className="text-white/70 hover:text-white transition-colors cursor-pointer"
                   >
                     {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4" />}
                   </button>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   {/* Playback speed selector */}
                   <div className="flex items-center bg-white/10 backdrop-blur-md rounded-full p-0.5 border border-white/10">
                     {[1, 1.25, 1.5, 2].map((spd) => (
                       <button
                         key={spd}
                         onClick={() => setPlaybackSpeed(spd)}
-                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold transition-all ${
+                        className={`px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] font-semibold transition-all cursor-pointer ${
                           playbackSpeed === spd
-                            ? "bg-white text-[#1D1D1F] shadow-sm"
+                            ? "bg-white text-[#1D1D1F] shadow-xs"
                             : "text-white/70 hover:text-white"
                         }`}
                       >
@@ -206,7 +208,7 @@ export function MasterclassVideoModal({
                       </button>
                     ))}
                   </div>
-                  <button className="text-white/70 hover:text-white transition-colors">
+                  <button className="text-white/70 hover:text-white transition-colors cursor-pointer hidden xs:block">
                     <Maximize2 className="w-4 h-4" />
                   </button>
                 </div>
@@ -214,8 +216,8 @@ export function MasterclassVideoModal({
             </div>
 
             {/* Video Meta & Summary Banner */}
-            <div className="p-5 bg-[#F5F5F7] border-t border-black/[0.06] space-y-1.5">
-              <h4 className="text-[11px] font-semibold uppercase tracking-wider text-[#86868B]">
+            <div className="p-3.5 sm:p-5 bg-[#F5F5F7] border-t border-black/[0.06] space-y-1.5">
+              <h4 className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#86868B]">
                 Core Conceptual Overview
               </h4>
               <p className="text-xs text-[#1D1D1F] leading-relaxed font-medium">{activeLesson.summary}</p>
@@ -223,10 +225,10 @@ export function MasterclassVideoModal({
           </div>
 
           {/* Right Col: Interactive Study Sidebar (Tabs: Notes, Statutes, Playlist, Doubt) */}
-          <div className="flex flex-col bg-white overflow-hidden">
+          <div className="flex flex-col bg-white overflow-hidden min-h-[360px] lg:min-h-0">
             {/* Sub-tab Navigation */}
-            <div className="p-2 border-b border-black/[0.06] bg-[#F5F5F7]/80">
-              <div className="flex items-center bg-black/[0.04] p-1 rounded-xl gap-1">
+            <div className="p-2 border-b border-black/[0.06] bg-[#F5F5F7]/80 shrink-0">
+              <div className="flex items-center bg-black/[0.04] p-1 rounded-xl gap-1 overflow-x-auto no-scrollbar">
                 {[
                   { id: "notes", label: "Notes", icon: FileText },
                   { id: "statutes", label: "Bare Acts", icon: BookOpen },
@@ -239,9 +241,9 @@ export function MasterclassVideoModal({
                     <button
                       key={t.id}
                       onClick={() => setActiveTab(t.id as any)}
-                      className={`flex-1 py-1.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${
+                      className={`flex-1 shrink-0 min-w-[70px] py-2 px-2.5 min-h-[38px] text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                         active
-                          ? "bg-white text-[#1D1D1F] shadow-sm"
+                          ? "bg-white text-[#1D1D1F] shadow-xs"
                           : "text-[#86868B] hover:text-[#1D1D1F]"
                       }`}
                     >
@@ -254,7 +256,7 @@ export function MasterclassVideoModal({
             </div>
 
             {/* Sub-tab Content Area */}
-            <div className="flex-1 p-5 overflow-y-auto space-y-4">
+            <div className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-4">
               {/* TAB 1: SMART NOTES */}
               {activeTab === "notes" && (
                 <div className="space-y-4">
