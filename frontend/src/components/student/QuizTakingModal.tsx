@@ -199,41 +199,41 @@ export function QuizTakingModal({
   const isLastQuestion = quiz ? currentIndex === quiz.questions.length - 1 : false;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#0A192F]/80 backdrop-blur-md animate-in fade-in">
-      <div className="relative w-full max-w-4xl max-h-[92vh] bg-white rounded-3xl shadow-2xl border border-black/10 overflow-hidden flex flex-col text-[#0A192F]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-6 bg-[#0A192F]/80 backdrop-blur-md animate-in fade-in">
+      <div className="relative w-full max-w-4xl h-full sm:h-auto sm:max-h-[92vh] bg-white rounded-none sm:rounded-3xl shadow-2xl border-0 sm:border border-black/10 overflow-hidden flex flex-col text-[#0A192F]">
         
         {/* Header Bar */}
-        <div className="px-6 py-4 bg-gradient-to-r from-[#0A192F] to-[#1E3A8A] text-white flex items-center justify-between shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center border border-white/20">
-              <Award className="w-5 h-5 text-amber-400" />
+        <div className="px-3 sm:px-6 py-2.5 sm:py-4 bg-gradient-to-r from-[#0A192F] to-[#1E3A8A] text-white flex items-center justify-between gap-2 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
+              <Award className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
             </div>
-            <div>
-              <h3 className="text-sm sm:text-base font-bold tracking-tight">
+            <div className="min-w-0">
+              <h3 className="text-xs sm:text-base font-bold tracking-tight truncate max-w-[140px] sm:max-w-xs md:max-w-md">
                 {quiz?.title || "Statutory Legal Quiz"}
               </h3>
-              <p className="text-xs text-blue-200">
+              <p className="text-[10px] sm:text-xs text-blue-200 truncate">
                 {quiz?.chapter || "Corporate & Other Laws"} • {quiz?.level || "CA Inter"}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
             {!result && !loading && (
               <div
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-bold border ${
+                className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-mono font-bold border ${
                   secondsRemaining < 120
                     ? "bg-rose-500/20 text-rose-300 border-rose-400/30 animate-pulse"
                     : "bg-white/10 text-emerald-300 border-white/20"
                 }`}
               >
-                <Clock className="w-3.5 h-3.5" />
+                <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 <span>{formatTime(secondsRemaining)}</span>
               </div>
             )}
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -241,7 +241,7 @@ export function QuizTakingModal({
         </div>
 
         {/* Content Body */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           {loading ? (
             <div className="py-20 flex flex-col items-center justify-center gap-3">
               <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin" />
@@ -425,8 +425,8 @@ export function QuizTakingModal({
             /* Active Test Taking View */
             <div className="space-y-6">
               {/* Question Navigation Palette */}
-              <div className="flex items-center gap-1.5 flex-wrap pb-4 border-b border-slate-200">
-                <span className="text-xs font-bold text-slate-500 mr-2">Question Palette:</span>
+              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-3 sm:pb-4 border-b border-slate-200 max-w-full">
+                <span className="text-xs font-bold text-slate-500 mr-2 shrink-0">Palette:</span>
                 {quiz.questions.map((q, idx) => {
                   const isAnswered = answers[q.id] !== undefined;
                   const isMarked = markedForReview[q.id];
@@ -445,7 +445,7 @@ export function QuizTakingModal({
                     <button
                       key={q.id}
                       onClick={() => setCurrentIndex(idx)}
-                      className={`w-7 h-7 rounded-lg text-xs font-mono border transition-all ${btnBg}`}
+                      className={`w-8 h-8 rounded-lg text-xs font-mono border transition-all shrink-0 flex items-center justify-center cursor-pointer min-w-[32px] min-h-[32px] ${btnBg}`}
                     >
                       {idx + 1}
                     </button>

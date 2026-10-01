@@ -1,6 +1,21 @@
 {
   "users": [
     {
+      "id": "usr-1790824799875",
+      "student_id": "LRK-2026-004182",
+      "name": "Kushal Pruthviraj Parakh",
+      "email": "parakhkushal1@gmail.com",
+      "phone": "09021311033",
+      "target_exam": "CA Foundation Paper 2: Business Laws",
+      "role": "student",
+      "is_active": 1,
+      "unlockedItemIds": [
+        "course-ca-foundation-sub"
+      ],
+      "created_at": "2026-10-01T03:19:59.875Z",
+      "updated_at": "2026-10-01T03:19:59.875Z"
+    },
+    {
       "id": "usr-1790819194328-623",
       "student_id": "LRK-2026-002645",
       "name": "Aarav Sharma",
@@ -930,6 +945,23 @@
   ],
   "subscriptions": [
     {
+      "id": "LK-SUB-2026-4091",
+      "userId": "usr-1790824799875",
+      "studentName": "Kushal Pruthviraj Parakh",
+      "studentRoll": "LRK-2026-004182",
+      "email": "parakhkushal1@gmail.com",
+      "phone": "09021311033",
+      "item": "CA Foundation Business Laws",
+      "targetExam": "CA Foundation Paper 2: Business Laws",
+      "amount": "₹99",
+      "date": "1 Oct 2026",
+      "paymentMode": "UPI / Razorpay",
+      "accessStatus": "Active",
+      "status": "ACTIVE",
+      "created_at": "2026-10-01T03:19:59.913Z",
+      "updated_at": "2026-10-01T03:19:59.913Z"
+    },
+    {
       "id": "LK-SUB-2026-2227",
       "userId": "usr-1790819194328-623",
       "studentName": "Aarav Sharma",
@@ -1087,6 +1119,31 @@
   ],
   "coupons": [],
   "orders": [
+    {
+      "id": "LK-ORD-168973",
+      "gateway_order_id": "order_1790824799851_5468",
+      "customer_name": "Kushal Pruthviraj Parakh",
+      "customer_email": "parakhkushal1@gmail.com",
+      "customer_phone": "09021311033",
+      "target_exam": "CA Foundation Paper 2: Business Laws",
+      "items": [
+        {
+          "id": "course-ca-foundation-sub",
+          "title": "CA Foundation Business Laws",
+          "price": 99,
+          "quantity": 1,
+          "format": "pdf"
+        }
+      ],
+      "subtotal": 99,
+      "discount_amount": 0,
+      "total_amount": 99,
+      "status": "COMPLETED",
+      "payment_method": "ONLINE",
+      "created_at": "2026-10-01T03:19:59.851Z",
+      "updated_at": "2026-10-01T03:19:59.873Z",
+      "gateway_payment_id": "pay_LK_1790824799860"
+    },
     {
       "id": "LK-ORD-855802",
       "gateway_order_id": "order_1790819194724_6818",

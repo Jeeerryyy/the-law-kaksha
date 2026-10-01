@@ -91,12 +91,12 @@ export function SecurePdfReaderModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md select-none p-2 sm:p-4 animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md select-none p-0 sm:p-4 animate-in fade-in duration-150"
       onContextMenu={(e) => e.preventDefault()}
     >
       {/* Main Ultra-Clean Reader Window */}
       <div
-        className={`relative w-full max-w-5xl h-[94vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden border transition-colors ${
+        className={`relative w-full max-w-5xl h-full sm:h-[94vh] rounded-none sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden border-0 sm:border transition-colors ${
           isDarkMode
             ? "bg-[#0b1120] text-slate-100 border-slate-800"
             : "bg-[#FBFBFD] text-[#1D1D1F] border-black/[0.08]"
@@ -104,12 +104,12 @@ export function SecurePdfReaderModal({
       >
         {/* MINIMAL TOP HEADER */}
         <div
-          className={`px-4 sm:px-6 py-3.5 border-b flex items-center justify-between gap-3 shrink-0 ${
+          className={`px-3 sm:px-6 py-2.5 sm:py-3.5 border-b flex items-center justify-between gap-2 shrink-0 ${
             isDarkMode ? "bg-[#0f172a] border-slate-800" : "bg-white/80 backdrop-blur-xl border-black/[0.06]"
           }`}
         >
           {/* Book Title & Student Badge */}
-          <div className="flex items-center gap-3 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <div className="w-8 h-8 rounded-full bg-[#0071E3]/[0.08] flex items-center justify-center text-[#0071E3] shrink-0">
               <BookOpen className="w-4 h-4" />
             </div>
@@ -122,14 +122,14 @@ export function SecurePdfReaderModal({
                   • Licensed to {student.name || student.rollNumber}
                 </span>
               </div>
-              <h3 className="text-xs sm:text-sm font-semibold truncate max-w-xs sm:max-w-md text-[#1D1D1F] dark:text-white">
+              <h3 className="text-xs sm:text-sm font-semibold truncate max-w-[130px] sm:max-w-xs md:max-w-md text-[#1D1D1F] dark:text-white">
                 {book.title}
               </h3>
             </div>
           </div>
 
           {/* Quick Chapter Selector, Zoom, Dark Mode, & Close */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Quick Chapter Jump Dropdown */}
             <div className="relative hidden md:block">
               <select
@@ -155,21 +155,21 @@ export function SecurePdfReaderModal({
 
             {/* Zoom Controls */}
             <div
-              className={`flex items-center rounded-full border px-1.5 py-0.5 text-xs ${
+              className={`flex items-center rounded-full border px-1 sm:px-1.5 py-0.5 text-xs ${
                 isDarkMode ? "bg-slate-900 border-slate-700" : "bg-black/[0.04] border-black/[0.06]"
               }`}
             >
               <button
                 onClick={() => setZoomLevel((z) => Math.max(85, z - 15))}
-                className="p-1 text-[#86868B] hover:text-[#1D1D1F] cursor-pointer"
+                className="p-1 text-[#86868B] hover:text-[#1D1D1F] cursor-pointer min-w-[24px] min-h-[24px] flex items-center justify-center"
                 title="Zoom Out"
               >
                 <ZoomOut className="w-3.5 h-3.5" />
               </button>
-              <span className="px-1.5 text-[10px] font-mono font-semibold text-[#0071E3]">{zoomLevel}%</span>
+              <span className="px-1 text-[10px] font-mono font-semibold text-[#0071E3]">{zoomLevel}%</span>
               <button
                 onClick={() => setZoomLevel((z) => Math.min(130, z + 15))}
-                className="p-1 text-[#86868B] hover:text-[#1D1D1F] cursor-pointer"
+                className="p-1 text-[#86868B] hover:text-[#1D1D1F] cursor-pointer min-w-[24px] min-h-[24px] flex items-center justify-center"
                 title="Zoom In"
               >
                 <ZoomIn className="w-3.5 h-3.5" />
@@ -179,7 +179,7 @@ export function SecurePdfReaderModal({
             {/* Dark Mode Toggle */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className={`p-1.5 rounded-full border transition-colors cursor-pointer ${
+              className={`p-1.5 rounded-full border transition-colors cursor-pointer min-w-[32px] min-h-[32px] flex items-center justify-center ${
                 isDarkMode
                   ? "bg-slate-800 border-slate-700 text-sky-400"
                   : "bg-black/[0.04] border-black/[0.06] text-[#1D1D1F] hover:bg-black/[0.08]"
@@ -203,7 +203,7 @@ export function SecurePdfReaderModal({
         {/* CONTINUOUS SCROLLABLE DOCUMENT CANVAS */}
         <div
           ref={containerRef}
-          className={`flex-1 overflow-y-auto p-4 sm:p-8 space-y-6 sm:space-y-8 flex flex-col items-center selection:bg-[#0071E3]/20 ${
+          className={`flex-1 overflow-y-auto p-2.5 sm:p-8 space-y-4 sm:space-y-8 flex flex-col items-center selection:bg-[#0071E3]/20 ${
             isDarkMode ? "bg-[#030712]" : "bg-[#F5F5F7]"
           }`}
           style={{ fontSize: `${(zoomLevel / 100) * 14}px` }}
@@ -352,7 +352,7 @@ export function SecurePdfReaderModal({
               ref={(el) => {
                 pageRefs.current[pData.page - 1] = el;
               }}
-              className={`w-full max-w-3xl rounded-3xl p-8 sm:p-12 font-serif leading-relaxed shadow-[0_2px_12px_rgba(0,0,0,0.03)] border relative transition-all ${
+              className={`w-full max-w-3xl rounded-2xl sm:rounded-3xl p-4 sm:p-12 font-serif leading-relaxed shadow-[0_2px_12px_rgba(0,0,0,0.03)] border relative transition-all ${
                 isDarkMode
                   ? "bg-[#0f172a] text-slate-100 border-slate-800"
                   : "bg-white text-[#1D1D1F] border-black/[0.06]"

@@ -767,42 +767,42 @@ export function EnhancedSampleChapterModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/40 backdrop-blur-xl animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-5 bg-black/50 backdrop-blur-xl animate-in fade-in duration-200">
       
       {/* Main Minimalist Modal Window */}
-      <div className="relative w-full max-w-4xl bg-white border border-black/[0.08] rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.18)] flex flex-col h-[92vh] overflow-hidden text-[#1D1D1F] animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-4xl bg-white border-0 sm:border border-black/[0.08] rounded-none sm:rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.18)] flex flex-col h-full sm:h-[92vh] overflow-hidden text-[#1D1D1F] animate-in zoom-in-95 duration-200">
         
         {/* MINIMAL TOP HEADER */}
-        <div className="px-6 py-4 border-b border-black/[0.05] flex items-center justify-between gap-3 bg-white shrink-0">
-          <div className="min-w-0 flex items-center gap-3">
+        <div className="px-3 sm:px-6 py-2.5 sm:py-4 border-b border-black/[0.05] flex items-center justify-between gap-2 bg-white shrink-0">
+          <div className="min-w-0 flex items-center gap-2 sm:gap-3">
             <div className="w-8 h-8 rounded-full bg-black/[0.04] border border-black/[0.06] flex items-center justify-center text-[#0071E3] shrink-0">
               <FileText className="w-4 h-4" />
             </div>
             <div className="min-w-0">
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071E3] font-mono block">
-                Official Sample Preview • 6 Continuous Pages
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071E3] font-mono block truncate">
+                Sample Preview • 6 Pages
               </span>
-              <h3 className="text-xs sm:text-sm font-semibold text-[#1D1D1F] truncate">
+              <h3 className="text-xs sm:text-sm font-semibold text-[#1D1D1F] truncate max-w-[130px] sm:max-w-xs md:max-w-md">
                 {displayTitle}
               </h3>
             </div>
           </div>
 
           {/* Controls: Zoom & Close */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Zoom Controls */}
             <div className="flex items-center bg-[#F5F5F7] rounded-full p-0.5 text-xs border border-black/[0.04]">
               <button
                 onClick={() => setZoomLevel((z) => Math.max(85, z - 15))}
-                className="p-1 text-[#6E6E73] hover:text-[#1D1D1F] rounded-full hover:bg-black/[0.04] cursor-pointer"
+                className="p-1 text-[#6E6E73] hover:text-[#1D1D1F] rounded-full hover:bg-black/[0.04] cursor-pointer min-w-[24px] min-h-[24px] flex items-center justify-center"
                 title="Zoom Out"
               >
                 <ZoomOut className="w-3.5 h-3.5" />
               </button>
-              <span className="px-2 text-[10px] font-mono text-[#6E6E73]">{zoomLevel}%</span>
+              <span className="px-1.5 text-[10px] font-mono text-[#6E6E73]">{zoomLevel}%</span>
               <button
                 onClick={() => setZoomLevel((z) => Math.min(130, z + 15))}
-                className="p-1 text-[#6E6E73] hover:text-[#1D1D1F] rounded-full hover:bg-black/[0.04] cursor-pointer"
+                className="p-1 text-[#6E6E73] hover:text-[#1D1D1F] rounded-full hover:bg-black/[0.04] cursor-pointer min-w-[24px] min-h-[24px] flex items-center justify-center"
                 title="Zoom In"
               >
                 <ZoomIn className="w-3.5 h-3.5" />
@@ -812,7 +812,7 @@ export function EnhancedSampleChapterModal({
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="p-1.5 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#6E6E73] hover:text-[#1D1D1F] transition-colors ml-1 cursor-pointer"
+              className="p-1.5 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#6E6E73] hover:text-[#1D1D1F] transition-colors ml-0.5 cursor-pointer min-w-[32px] min-h-[32px] flex items-center justify-center"
               aria-label="Close Preview"
             >
               <X className="w-4 h-4" />
@@ -822,21 +822,21 @@ export function EnhancedSampleChapterModal({
 
         {/* CONTINUOUS VERTICALLY SCROLLABLE 6-PAGE DOCUMENT CANVAS */}
         <div
-          className="flex-1 overflow-y-auto p-4 sm:p-8 bg-[#F5F5F7] space-y-6 sm:space-y-8 flex flex-col items-center selection:bg-sky-100"
+          className="flex-1 overflow-y-auto p-2.5 sm:p-8 bg-[#F5F5F7] space-y-4 sm:space-y-8 flex flex-col items-center selection:bg-sky-100"
           style={{ fontSize: `${(zoomLevel / 100) * 14}px` }}
         >
           {/* PAGES 1 TO 5 (Content Sheets) */}
           {bookData.pages.map((p) => (
             <div
               key={p.pageNumber}
-              className="w-full max-w-3xl bg-white border border-black/[0.08] rounded-3xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-6 sm:p-10 font-serif leading-relaxed text-slate-800 relative transition-transform"
+              className="w-full max-w-3xl bg-white border border-black/[0.08] rounded-2xl sm:rounded-3xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-4 sm:p-10 font-serif leading-relaxed text-slate-800 relative transition-transform"
             >
               {/* Running Header On Every Page */}
-              <div className="flex items-center justify-between pb-3 mb-5 border-b border-black/[0.05] text-[10px] font-sans text-[#86868B]">
-                <span className="font-semibold text-[#0071E3] uppercase tracking-wider">
+              <div className="flex items-center justify-between pb-3 mb-4 sm:mb-5 border-b border-black/[0.05] text-[10px] font-sans text-[#86868B]">
+                <span className="font-semibold text-[#0071E3] uppercase tracking-wider truncate max-w-[200px] sm:max-w-none">
                   The Law Kaksha • {bookData.category}
                 </span>
-                <span className="font-mono font-medium text-[#86868B]">
+                <span className="font-mono font-medium text-[#86868B] shrink-0">
                   Page {p.pageNumber} of 6
                 </span>
               </div>
@@ -845,7 +845,7 @@ export function EnhancedSampleChapterModal({
               {p.content}
 
               {/* Running Footer On Every Page */}
-              <div className="mt-8 pt-4 border-t border-black/[0.05] flex items-center justify-between text-[10px] font-sans text-[#86868B]">
+              <div className="mt-6 sm:mt-8 pt-3 sm:pt-4 border-t border-black/[0.05] flex items-center justify-between text-[10px] font-sans text-[#86868B]">
                 <span>Official Academic Sample Codex</span>
                 <span>Page {p.pageNumber} of 6</span>
               </div>
@@ -853,13 +853,13 @@ export function EnhancedSampleChapterModal({
           ))}
 
           {/* PAGE 6 (FINAL UNLOCK SHEET) */}
-          <div className="w-full max-w-3xl bg-white border border-black/[0.08] rounded-3xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-6 sm:p-10 font-serif leading-relaxed text-slate-800 relative">
+          <div className="w-full max-w-3xl bg-white border border-black/[0.08] rounded-2xl sm:rounded-3xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-4 sm:p-10 font-serif leading-relaxed text-slate-800 relative">
             {/* Header for Page 6 */}
-            <div className="flex items-center justify-between pb-3 mb-5 border-b border-black/[0.05] text-[10px] font-sans text-[#86868B]">
-              <span className="font-semibold text-[#0071E3] uppercase tracking-wider">
+            <div className="flex items-center justify-between pb-3 mb-4 sm:mb-5 border-b border-black/[0.05] text-[10px] font-sans text-[#86868B]">
+              <span className="font-semibold text-[#0071E3] uppercase tracking-wider truncate max-w-[200px] sm:max-w-none">
                 The Law Kaksha • {bookData.category}
               </span>
-              <span className="font-mono font-medium text-[#86868B]">
+              <span className="font-mono font-medium text-[#86868B] shrink-0">
                 Page 6 of 6 (Preview Completed)
               </span>
             </div>
@@ -912,7 +912,7 @@ export function EnhancedSampleChapterModal({
         </div>
 
         {/* MINIMAL BOTTOM ACTION BAR */}
-        <div className="px-6 py-3.5 border-t border-black/[0.05] bg-white flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+        <div className="px-4 sm:px-6 py-2.5 sm:py-3.5 border-t border-black/[0.05] bg-white flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 shrink-0">
           <div className="flex items-center gap-2 text-xs">
             <span className="text-[#6E6E73]">Full 2-Volume Edition:</span>
             <span className="text-lg font-bold text-[#1D1D1F]">₹{bookData.price}</span>

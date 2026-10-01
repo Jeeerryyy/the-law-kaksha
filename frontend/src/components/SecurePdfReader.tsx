@@ -159,6 +159,9 @@ export function SecurePdfReader({
   const [bookmarks, setBookmarks] = useState<number[]>([]);
   const renderTaskRef = useRef<any>(null);
 
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+
   // Student Profile Data
   const [activeStudent, setActiveStudent] = useState({ name: studentName, roll: studentRoll });
   useEffect(() => {
@@ -213,12 +216,6 @@ export function SecurePdfReader({
       if (interval) clearInterval(interval);
     };
   }, [isOpen]);
-
-  const formatReadingDuration = (secs: number) => {
-    const mins = Math.floor(secs / 60);
-    if (mins < 1) return "< 1 min read";
-    return `${mins} min read`;
-  };
 
   // Determine chapter outlines based on book title or url
   const chaptersList = useMemo(() => {
@@ -322,16 +319,17 @@ export function SecurePdfReader({
     }
   }, []);
 
-  // Fit to Width calculation
+  // Fit to Width calculation with responsive screen padding awareness
   const handleFitWidth = useCallback(async () => {
     if (!containerRef.current || !pdfDoc) return;
     try {
       const page = await pdfDoc.getPage(currentPage);
       const viewport = page.getViewport({ scale: 1, rotation });
-      const containerWidth = containerRef.current.clientWidth - 56; // container padding
+      const padding = typeof window !== "undefined" && window.innerWidth < 640 ? 12 : 56;
+      const containerWidth = containerRef.current.clientWidth - padding;
       if (containerWidth > 0 && viewport.width > 0) {
         const targetScale = containerWidth / viewport.width;
-        setScale(Math.min(Math.max(targetScale, 0.5), 2.8));
+        setScale(Math.min(Math.max(targetScale, 0.4), 3.0));
       }
     } catch (e) {}
   }, [currentPage, pdfDoc, rotation]);
@@ -342,13 +340,30 @@ export function SecurePdfReader({
     try {
       const page = await pdfDoc.getPage(currentPage);
       const viewport = page.getViewport({ scale: 1, rotation });
-      const containerHeight = containerRef.current.clientHeight - 60; // container padding
+      const containerHeight = containerRef.current.clientHeight - 60;
       if (containerHeight > 0 && viewport.height > 0) {
         const targetScale = containerHeight / viewport.height;
-        setScale(Math.min(Math.max(targetScale, 0.5), 2.8));
+        setScale(Math.min(Math.max(targetScale, 0.4), 3.0));
       }
     } catch (e) {}
   }, [currentPage, pdfDoc, rotation]);
+
+  // Auto-fit width when doc loaded or window resized on mobile
+  useEffect(() => {
+    if (pdfDoc) {
+      handleFitWidth();
+    }
+  }, [pdfDoc, handleFitWidth]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined" && window.innerWidth < 768) {
+        handleFitWidth();
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleFitWidth]);
 
   // Rotate Page
   const handleRotate = () => {
@@ -409,6 +424,33 @@ export function SecurePdfReader({
     }
   }, [pdfDoc, currentPage, scale, rotation, renderPage]);
 
+  // Touch Swipe Handlers for mobile page navigation
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      setTouchStartX(e.touches[0].clientX);
+      setTouchStartY(e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null || touchStartY === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+    // Trigger only on intentional horizontal swipe (>50px and mainly horizontal)
+    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
+      if (deltaX < 0) {
+        // Swiped Left -> Next Page
+        setCurrentPage((p) => Math.min(p + 1, totalPages));
+      } else {
+        // Swiped Right -> Previous Page
+        setCurrentPage((p) => Math.max(p - 1, 1));
+      }
+    }
+    setTouchStartX(null);
+    setTouchStartY(null);
+  };
+
   // Keyboard navigation & Security Traps
   useEffect(() => {
     if (!isOpen) return;
@@ -428,7 +470,7 @@ export function SecurePdfReader({
       } else if (e.key === "+" || e.key === "=") {
         setScale((s) => Math.min(s + 0.15, 3));
       } else if (e.key === "-" || e.key === "_") {
-        setScale((s) => Math.max(s - 0.15, 0.5));
+        setScale((s) => Math.max(s - 0.15, 0.4));
       } else if (e.key === "w" || e.key === "W") {
         handleFitWidth();
       } else if (e.key === "p" || e.key === "P") {
@@ -532,18 +574,19 @@ export function SecurePdfReader({
 
       {/* 1. MINIMAL & SLEEK EXECUTIVE TOP BAR */}
       <header
-        className={`flex items-center justify-between px-3 sm:px-5 py-2 border-b shrink-0 z-30 transition-colors ${themeStyles.headerBg}`}
+        className={`flex items-center justify-between px-2 sm:px-5 py-2 border-b shrink-0 z-30 transition-colors gap-2 ${themeStyles.headerBg}`}
       >
         {/* LEFT: MINIMAL INDEX DRAWER BUTTON + BOOK TITLE + SUBTLE DRM BADGE */}
-        <div className="flex items-center gap-2.5 min-w-0">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
           <button
             onClick={() => setSidebarTab(sidebarTab ? null : "units")}
-            className={`p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
+            className={`p-2 sm:px-2.5 sm:py-1.5 rounded-xl border text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer min-h-[36px] min-w-[36px] justify-center ${
               sidebarTab
                 ? "bg-violet-600 text-white border-violet-500 shadow-xs"
                 : themeStyles.pillBg
             }`}
             title="Table of Contents & Bookmarks"
+            aria-label="Table of Contents"
           >
             <List className="w-4 h-4" />
             <span className="hidden sm:inline text-xs font-semibold">Index</span>
@@ -552,8 +595,8 @@ export function SecurePdfReader({
           <div className="w-px h-4 bg-white/10 hidden sm:block" />
 
           {/* Clean Book Title */}
-          <div className="min-w-0 flex items-center gap-2">
-            <h1 className="text-xs sm:text-sm font-bold tracking-tight truncate">
+          <div className="min-w-0 flex items-center gap-1.5">
+            <h1 className="text-xs sm:text-sm font-bold tracking-tight truncate max-w-[110px] xs:max-w-[150px] sm:max-w-xs md:max-w-md">
               {title}
             </h1>
             <span className="hidden md:inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-400/90 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 shrink-0">
@@ -565,20 +608,24 @@ export function SecurePdfReader({
 
         {/* CENTER: MINIMAL PAGE & PROGRESS INDICATOR */}
         {totalPages > 0 && (
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/10 border border-white/10 text-xs font-medium shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 rounded-full bg-black/15 border border-white/10 text-[11px] sm:text-xs font-medium shrink-0">
             <span className="opacity-90 font-mono">
-              Page {currentPage} <span className="opacity-40">/</span> {totalPages}
+              <span className="hidden sm:inline">Page </span>
+              {currentPage}
+              <span className="opacity-40 mx-0.5">/</span>
+              {totalPages}
             </span>
-            <span className="w-1 h-1 rounded-full bg-violet-400 opacity-60" />
-            <span className="text-[11px] font-bold text-violet-400">{readingProgress}%</span>
+            <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-violet-400 opacity-60" />
+            <span className="hidden sm:inline text-[11px] font-bold text-violet-400">{readingProgress}%</span>
 
             {/* Quick Bookmark Toggle */}
             <button
               onClick={() => toggleBookmark(currentPage)}
-              className={`p-0.5 ml-0.5 transition-colors cursor-pointer ${
+              className={`p-1 ml-0.5 transition-colors cursor-pointer rounded-md min-w-[24px] min-h-[24px] flex items-center justify-center ${
                 isBookmarked ? "text-amber-400" : "opacity-40 hover:opacity-90"
               }`}
               title={isBookmarked ? "Bookmarked (Click to remove)" : "Bookmark this page (B)"}
+              aria-label="Toggle Bookmark"
             >
               <Bookmark className={`w-3.5 h-3.5 ${isBookmarked ? "fill-amber-400" : ""}`} />
             </button>
@@ -588,31 +635,34 @@ export function SecurePdfReader({
         {/* RIGHT: THEME SWITCHER + ZOOM CONTROLS + FIT WIDTH + CLOSE */}
         <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
           {/* Theme Selector Mini Toggle */}
-          <div className="flex items-center rounded-lg p-0.5 border border-white/10 bg-black/10">
+          <div className="flex items-center rounded-xl p-0.5 border border-white/10 bg-black/10">
             <button
               onClick={() => setTheme("dark")}
-              className={`p-1.5 rounded-md text-xs transition-colors cursor-pointer ${
+              className={`p-1.5 rounded-lg text-xs transition-colors cursor-pointer min-w-[28px] min-h-[28px] flex items-center justify-center ${
                 theme === "dark" ? "bg-violet-600 text-white shadow-xs" : "opacity-50 hover:opacity-100"
               }`}
               title="Dark Mode"
+              aria-label="Dark Mode"
             >
               <Moon className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => setTheme("sepia")}
-              className={`p-1.5 rounded-md text-xs transition-colors cursor-pointer ${
+              className={`p-1.5 rounded-lg text-xs transition-colors cursor-pointer min-w-[28px] min-h-[28px] flex items-center justify-center ${
                 theme === "sepia" ? "bg-amber-700 text-white shadow-xs" : "opacity-50 hover:opacity-100"
               }`}
               title="Sepia Eye-Care Mode"
+              aria-label="Sepia Mode"
             >
               <Coffee className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => setTheme("light")}
-              className={`p-1.5 rounded-md text-xs transition-colors cursor-pointer ${
+              className={`p-1.5 rounded-lg text-xs transition-colors cursor-pointer min-w-[28px] min-h-[28px] flex items-center justify-center ${
                 theme === "light" ? "bg-white text-slate-800 shadow-xs" : "opacity-50 hover:opacity-100"
               }`}
               title="Light Mode"
+              aria-label="Light Mode"
             >
               <Sun className="w-3.5 h-3.5" />
             </button>
@@ -621,16 +671,16 @@ export function SecurePdfReader({
           {/* Fit Width Icon Button */}
           <button
             onClick={handleFitWidth}
-            className={`p-1.5 rounded-lg border text-xs font-semibold hidden sm:flex items-center transition-all cursor-pointer ${themeStyles.pillBg}`}
+            className={`p-1.5 rounded-xl border text-xs font-semibold hidden md:flex items-center transition-all cursor-pointer ${themeStyles.pillBg}`}
             title="Fit to Width (W)"
           >
             <Maximize2 className="w-3.5 h-3.5" />
           </button>
 
           {/* Compact Zoom In / Out */}
-          <div className="flex items-center rounded-lg border border-white/10 bg-black/10 px-1 py-0.5">
+          <div className="hidden sm:flex items-center rounded-xl border border-white/10 bg-black/10 px-1 py-0.5">
             <button
-              onClick={() => setScale((s) => Math.max(s - 0.15, 0.5))}
+              onClick={() => setScale((s) => Math.max(s - 0.15, 0.4))}
               title="Zoom out (-)"
               className="p-1 rounded opacity-60 hover:opacity-100 cursor-pointer"
             >
@@ -651,22 +701,22 @@ export function SecurePdfReader({
           {/* Fullscreen Button */}
           <button
             onClick={toggleFullscreen}
-            className={`p-1.5 rounded-lg border transition-colors cursor-pointer hidden md:flex ${themeStyles.pillBg}`}
+            className={`p-1.5 rounded-xl border transition-colors cursor-pointer hidden lg:flex ${themeStyles.pillBg}`}
             title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
           >
             {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
           </button>
 
-          <div className="w-px h-4 bg-white/10 mx-0.5" />
+          <div className="w-px h-4 bg-white/10 mx-0.5 hidden sm:block" />
 
           {/* Minimal Close Button */}
           <button
             onClick={onClose}
             title="Close (Esc)"
-            className="w-7 h-7 rounded-lg bg-rose-500/15 hover:bg-rose-500/30 text-rose-300 hover:text-white border border-rose-500/30 flex items-center justify-center transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-xl bg-rose-500/15 hover:bg-rose-500/30 text-rose-300 hover:text-white border border-rose-500/30 flex items-center justify-center transition-colors cursor-pointer"
             aria-label="Close"
           >
-            <X className="w-3.5 h-3.5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
       </header>
@@ -674,17 +724,25 @@ export function SecurePdfReader({
 
       {/* 2. MAIN READING WORKSPACE & NAVIGATION DRAWER */}
       <div className="flex-1 flex min-h-0 relative">
+        {/* MOBILE SIDEBAR BACKDROP */}
+        {sidebarTab && (
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 sm:hidden"
+            onClick={() => setSidebarTab(null)}
+          />
+        )}
+
         {/* COLLAPSIBLE SIDEBAR DRAWER (UNITS / BOOKMARKS / SHORTCUTS) */}
         {sidebarTab && (
           <aside
-            className={`w-72 sm:w-84 shrink-0 border-r flex flex-col z-30 shadow-2xl animate-in slide-in-from-left duration-200 ${themeStyles.tocBg}`}
+            className={`fixed inset-y-0 left-0 z-50 w-[85vw] max-w-sm sm:static sm:z-30 sm:w-84 shrink-0 border-r flex flex-col shadow-2xl animate-in slide-in-from-left duration-200 ${themeStyles.tocBg}`}
           >
             {/* Drawer Tabs */}
             <div className="p-3 border-b border-inherit flex items-center justify-between gap-1">
               <div className="flex items-center gap-1 bg-black/10 rounded-xl p-1 w-full">
                 <button
                   onClick={() => setSidebarTab("units")}
-                  className={`flex-1 py-1 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     sidebarTab === "units" ? "bg-violet-600 text-white shadow-xs" : "opacity-70 hover:opacity-100"
                   }`}
                 >
@@ -692,7 +750,7 @@ export function SecurePdfReader({
                 </button>
                 <button
                   onClick={() => setSidebarTab("bookmarks")}
-                  className={`flex-1 py-1 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1 ${
+                  className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1 ${
                     sidebarTab === "bookmarks" ? "bg-amber-600 text-white shadow-xs" : "opacity-70 hover:opacity-100"
                   }`}
                 >
@@ -701,7 +759,7 @@ export function SecurePdfReader({
                 </button>
                 <button
                   onClick={() => setSidebarTab("shortcuts")}
-                  className={`py-1 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  className={`py-1.5 px-2.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     sidebarTab === "shortcuts" ? "bg-slate-700 text-white shadow-xs" : "opacity-70 hover:opacity-100"
                   }`}
                 >
@@ -711,7 +769,7 @@ export function SecurePdfReader({
 
               <button
                 onClick={() => setSidebarTab(null)}
-                className="p-1.5 rounded-lg hover:bg-black/10 text-inherit opacity-70 hover:opacity-100 cursor-pointer ml-1"
+                className="p-1.5 rounded-lg hover:bg-black/10 text-inherit opacity-70 hover:opacity-100 cursor-pointer ml-1 min-w-[32px] min-h-[32px] flex items-center justify-center"
                 title="Close Drawer"
               >
                 <X className="w-4 h-4" />
@@ -732,13 +790,15 @@ export function SecurePdfReader({
 
                 {chaptersList.map((ch) => {
                   const isActive = activeUnit.unit === ch.unit;
-                  const isCompleted = currentPage > ch.startPage;
 
                   return (
                     <div
                       key={ch.unit}
                       onClick={() => {
                         setCurrentPage(Math.min(ch.startPage, totalPages || 1));
+                        if (typeof window !== "undefined" && window.innerWidth < 640) {
+                          setSidebarTab(null);
+                        }
                       }}
                       className={`w-full text-left p-3.5 rounded-2xl border transition-all cursor-pointer group ${
                         isActive
@@ -818,7 +878,12 @@ export function SecurePdfReader({
                       className="p-3 rounded-xl bg-black/5 hover:bg-black/10 border border-white/10 flex items-center justify-between gap-3 transition-colors"
                     >
                       <button
-                        onClick={() => setCurrentPage(bmPage)}
+                        onClick={() => {
+                          setCurrentPage(bmPage);
+                          if (typeof window !== "undefined" && window.innerWidth < 640) {
+                            setSidebarTab(null);
+                          }
+                        }}
                         className="flex items-center gap-2.5 text-left flex-1 cursor-pointer"
                       >
                         <div className="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 font-bold font-mono text-xs flex items-center justify-center">
@@ -832,7 +897,7 @@ export function SecurePdfReader({
 
                       <button
                         onClick={() => toggleBookmark(bmPage)}
-                        className="p-1 rounded-lg hover:bg-rose-500/20 text-rose-400 opacity-70 hover:opacity-100 transition-colors cursor-pointer"
+                        className="p-1.5 rounded-lg hover:bg-rose-500/20 text-rose-400 opacity-70 hover:opacity-100 transition-colors cursor-pointer"
                         title="Remove bookmark"
                       >
                         <X className="w-3.5 h-3.5" />
@@ -853,6 +918,7 @@ export function SecurePdfReader({
 
                 <div className="space-y-2 text-xs">
                   {[
+                    { key: "Swipe ← / →", label: "Mobile Page Turn" },
                     { key: "→ / Space", label: "Next Page" },
                     { key: "← / Shift+Space", label: "Previous Page" },
                     { key: "+ / =", label: "Zoom In" },
@@ -895,17 +961,19 @@ export function SecurePdfReader({
         {/* CANVAS WORKSPACE */}
         <div
           ref={containerRef}
-          className="flex-1 overflow-auto flex flex-col items-center justify-start py-8 px-4 relative scroll-smooth"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="flex-1 overflow-auto flex flex-col items-center justify-start py-3 sm:py-8 px-1.5 sm:px-4 relative scroll-smooth"
           style={{ background: themeStyles.canvasBg }}
           onContextMenu={blockContext}
         >
-          {/* FLOATING PREVIOUS / NEXT SIDE CHEVRONS */}
+          {/* FLOATING PREVIOUS / NEXT SIDE CHEVRONS (DESKTOP ONLY TO AVOID BLOCKING MOBILE CANVAS TEXT) */}
           {totalPages > 0 && (
             <>
               <button
                 onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                 disabled={currentPage === 1}
-                className="fixed left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/45 hover:bg-violet-600 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all disabled:opacity-0 cursor-pointer shadow-2xl group hover:scale-110 active:scale-95"
+                className="hidden sm:flex fixed left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/45 hover:bg-violet-600 text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all disabled:opacity-0 cursor-pointer shadow-2xl group hover:scale-110 active:scale-95"
                 title="Previous Page (←)"
               >
                 <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
@@ -914,7 +982,7 @@ export function SecurePdfReader({
               <button
                 onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/45 hover:bg-violet-600 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all disabled:opacity-0 cursor-pointer shadow-2xl group hover:scale-110 active:scale-95"
+                className="hidden sm:flex fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/45 hover:bg-violet-600 text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all disabled:opacity-0 cursor-pointer shadow-2xl group hover:scale-110 active:scale-95"
                 title="Next Page (→)"
               >
                 <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
@@ -939,7 +1007,7 @@ export function SecurePdfReader({
 
           {/* ERROR STATE */}
           {error && (
-            <div className="flex flex-col items-center justify-center my-auto gap-3 max-w-md text-center p-8 rounded-3xl bg-black/30 border border-white/10 backdrop-blur-md">
+            <div className="flex flex-col items-center justify-center my-auto gap-3 max-w-md text-center p-6 sm:p-8 rounded-3xl bg-black/30 border border-white/10 backdrop-blur-md">
               <div className="w-14 h-14 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
                 <BookOpen className="w-7 h-7" />
               </div>
@@ -957,25 +1025,24 @@ export function SecurePdfReader({
 
           {/* LOADED PDF PAGE WITH SECURITY WATERMARK & REALISTIC SHADOW */}
           {!loading && !error && (
-            <div className="relative my-auto flex flex-col items-center pb-20">
+            <div className="relative my-auto flex flex-col items-center pb-20 max-w-full">
               <div
-                className={`relative select-none rounded-xl overflow-hidden ${themeStyles.pageShadow} transition-transform duration-150`}
+                className={`relative select-none rounded-xl overflow-hidden ${themeStyles.pageShadow} transition-transform duration-150 max-w-full`}
                 style={{
-                  maxWidth: "100%",
                   background: "#ffffff",
                 }}
                 onContextMenu={blockContext}
               >
                 {/* CANVAS RENDERING SURFACE */}
-                <canvas ref={canvasRef} className="block max-w-full" />
+                <canvas ref={canvasRef} className="block max-w-full h-auto" />
 
                 {/* ANTI-SCREENSHOT / DRM WATERMARK OVERLAY */}
-                <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-6 opacity-[0.035] text-black select-none font-mono text-xs overflow-hidden leading-relaxed">
+                <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-3 sm:p-6 opacity-[0.035] text-black select-none font-mono text-[10px] sm:text-xs overflow-hidden leading-relaxed">
                   <div className="flex justify-between">
                     <span>THE LAW KAKSHA • LICENSED STUDENT EDITION</span>
                     <span>ROLL: {activeStudent.roll}</span>
                   </div>
-                  <div className="text-center transform -rotate-12 text-sm font-bold">
+                  <div className="text-center transform -rotate-12 text-xs sm:text-sm font-bold">
                     CONFIDENTIAL STUDY MATERIAL • LICENSED TO {activeStudent.name.toUpperCase()} • DO NOT DISTRIBUTE
                   </div>
                   <div className="flex justify-between">
@@ -988,12 +1055,12 @@ export function SecurePdfReader({
               </div>
 
               {/* FLOATING UNDER-PAGE FOOTNOTE */}
-              <div className="mt-4 flex items-center gap-2 text-[11px] opacity-60 font-medium">
+              <div className="mt-3 sm:mt-4 flex items-center gap-2 text-[10px] sm:text-[11px] opacity-60 font-medium px-2 text-center">
                 <span className="font-bold">Page {currentPage} of {totalPages}</span>
                 <span>•</span>
-                <span>{activeUnit.title}</span>
-                <span>•</span>
-                <span className="hidden sm:inline">Use keyboard ← / → arrows or drag slider</span>
+                <span className="truncate max-w-[160px] sm:max-w-none">{activeUnit.title}</span>
+                <span className="hidden sm:inline">•</span>
+                <span className="hidden sm:inline">Use keyboard ← / → arrows or swipe to navigate</span>
               </div>
             </div>
           )}
@@ -1003,14 +1070,14 @@ export function SecurePdfReader({
       {/* 3. FLOATING SCRUBBER ISLAND BAR (BOTTOM DOCK) */}
       {totalPages > 0 && (
         <footer
-          className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-40 max-w-2xl w-[92%] sm:w-full px-4 sm:px-6 py-2.5 rounded-2xl border shadow-2xl flex items-center justify-between gap-3 ${themeStyles.controlBar} ${themeStyles.dockBorder}`}
+          className={`fixed bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-40 max-w-2xl w-[96%] sm:w-full px-2.5 sm:px-6 py-2 sm:py-2.5 rounded-2xl border shadow-2xl flex items-center justify-between gap-1.5 sm:gap-3 ${themeStyles.controlBar} ${themeStyles.dockBorder}`}
         >
           {/* QUICK JUMP: FIRST & PREVIOUS */}
           <div className="flex items-center gap-1">
             <button
               onClick={() => setCurrentPage(1)}
               disabled={currentPage === 1}
-              className={`p-1.5 rounded-xl border text-xs font-semibold flex items-center transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed ${themeStyles.pillBg}`}
+              className={`hidden sm:flex p-1.5 rounded-xl border text-xs font-semibold items-center transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed ${themeStyles.pillBg}`}
               title="First Page"
             >
               <ChevronsLeft className="w-4 h-4" />
@@ -1018,7 +1085,7 @@ export function SecurePdfReader({
             <button
               onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
               disabled={currentPage === 1}
-              className={`px-2.5 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed ${themeStyles.pillBg}`}
+              className={`px-2 sm:px-2.5 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed min-h-[36px] ${themeStyles.pillBg}`}
               title="Previous Page (←)"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -1027,7 +1094,7 @@ export function SecurePdfReader({
           </div>
 
           {/* INTERACTIVE PAGE SCRUBBER SLIDER */}
-          <div className="flex-1 flex items-center gap-2.5 px-2 min-w-0">
+          <div className="flex-1 flex items-center gap-1.5 sm:gap-2.5 px-1 min-w-0">
             <span className="text-[10px] font-mono font-bold opacity-60">1</span>
             <div className="relative flex-1 flex items-center">
               <input
@@ -1036,7 +1103,7 @@ export function SecurePdfReader({
                 max={totalPages}
                 value={currentPage}
                 onChange={(e) => setCurrentPage(Number(e.target.value))}
-                className="w-full h-1.5 bg-black/25 rounded-lg appearance-none cursor-pointer accent-violet-500 focus:outline-none"
+                className="w-full h-2 bg-black/25 rounded-lg appearance-none cursor-pointer accent-violet-500 focus:outline-none"
                 title={`Page ${currentPage} of ${totalPages} (${readingProgress}%)`}
               />
             </div>
@@ -1048,7 +1115,7 @@ export function SecurePdfReader({
             <button
               onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className={`px-2.5 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed ${themeStyles.pillBg}`}
+              className={`px-2 sm:px-2.5 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed min-h-[36px] ${themeStyles.pillBg}`}
               title="Next Page (→)"
             >
               <span className="hidden sm:inline text-[11px]">Next</span>
@@ -1057,14 +1124,14 @@ export function SecurePdfReader({
             <button
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}
-              className={`p-1.5 rounded-xl border text-xs font-semibold flex items-center transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed ${themeStyles.pillBg}`}
+              className={`hidden sm:flex p-1.5 rounded-xl border text-xs font-semibold items-center transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed ${themeStyles.pillBg}`}
               title="Last Page"
             >
               <ChevronsRight className="w-4 h-4" />
             </button>
           </div>
 
-          {/* DIRECT PAGE JUMP INPUT */}
+          {/* DIRECT PAGE JUMP INPUT (DESKTOP ONLY TO PREVENT UNWANTED KEYBOARD POPUPS ON MOBILE) */}
           <div className="hidden sm:flex items-center gap-1.5 pl-2 border-l border-inherit">
             <input
               type="number"

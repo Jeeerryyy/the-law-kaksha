@@ -322,13 +322,13 @@ export default function StudentDashboardPage() {
             <p className="text-[11px] text-slate-400 leading-none mt-0.5">{activeCourse === "ca" ? "CA Foundation - Business Laws" : "CSEET - Business Law & Management"}</p>
             </div>
           </div>
-          <div className="inline-flex p-1 rounded-full bg-white border border-slate-200 shadow-sm">
+          <div className="inline-flex p-0.5 sm:p-1 rounded-full bg-white border border-slate-200 shadow-xs shrink-0">
             <button type="button" onClick={() => { setActiveCourse("ca"); setSelectedChapterId("ca-ch4"); }}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${activeCourse === "ca" ? "bg-violet-600 text-white shadow-sm" : "text-slate-500 hover:text-slate-700"}`}>
+              className={`px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all cursor-pointer ${activeCourse === "ca" ? "bg-violet-600 text-white shadow-xs" : "text-slate-500 hover:text-slate-700"}`}>
               CA Foundation
             </button>
             <button type="button" onClick={() => { setActiveCourse("cs"); setSelectedChapterId("cs-u7"); }}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${activeCourse === "cs" ? "bg-violet-600 text-white shadow-sm" : "text-slate-500 hover:text-slate-700"}`}>
+              className={`px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all cursor-pointer ${activeCourse === "cs" ? "bg-violet-600 text-white shadow-xs" : "text-slate-500 hover:text-slate-700"}`}>
               CSEET
             </button>
           </div>

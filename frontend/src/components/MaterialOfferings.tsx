@@ -259,8 +259,8 @@ export function MaterialOfferings() {
         </div>
 
         {/* Category Segmented Tabs */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex flex-wrap items-center justify-center p-1 rounded-2xl bg-slate-100/90 border border-slate-200/80 gap-1 shadow-xs">
+        <div className="flex justify-center mb-6 max-w-full overflow-hidden">
+          <div className="inline-flex items-center p-1 rounded-2xl bg-slate-100/90 border border-slate-200/80 gap-1 shadow-xs max-w-full overflow-x-auto no-scrollbar">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.key;
@@ -268,14 +268,14 @@ export function MaterialOfferings() {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 flex items-center gap-2 ${
+                  className={`px-3.5 py-2 sm:py-1.5 rounded-xl text-xs font-medium transition-all duration-200 flex items-center gap-2 shrink-0 cursor-pointer min-h-[40px] sm:min-h-0 ${
                     isActive
                       ? "bg-white text-slate-900 font-bold shadow-xs border border-slate-200/90"
                       : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
                   }`}
                 >
                   <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#0284C7]" : "text-slate-500"}`} />
-                  <span>{tab.label}</span>
+                  <span className="whitespace-nowrap">{tab.label}</span>
                 </button>
               );
             })}

@@ -244,7 +244,7 @@ export function BareActDecoderTool() {
               />
             </div>
 
-            <div className="space-y-2 max-h-[480px] overflow-y-auto pr-1">
+            <div className="space-y-2 max-h-[240px] sm:max-h-[480px] overflow-y-auto pr-1">
               {filteredSections.map((sec) => {
                 const isSelected = sec.id === selectedId;
                 return (

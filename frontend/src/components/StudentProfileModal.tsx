@@ -170,7 +170,7 @@ export function StudentProfileModal({
           </div>
 
           {/* TABS */}
-          <div className="flex items-center gap-2 mt-5 pt-3 border-t border-white/10">
+          <div className="flex items-center gap-2 mt-5 pt-3 border-t border-white/10 overflow-x-auto no-scrollbar max-w-full">
             {[
               { id: "general" as const, label: "Personal Details", icon: User },
               { id: "academic" as const, label: "Exam & Goals", icon: BookOpen },
@@ -183,7 +183,7 @@ export function StudentProfileModal({
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3.5 py-2 sm:py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer shrink-0 whitespace-nowrap min-h-[40px] sm:min-h-0 ${
                     isActive
                       ? "bg-white text-violet-700 shadow-sm"
                       : "text-violet-200 hover:bg-white/10 hover:text-white"
